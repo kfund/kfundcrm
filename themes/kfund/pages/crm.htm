@@ -13,10 +13,7 @@ is_hidden = 0
 <main class="bd-main w-100">
   <div class="d-flex align-items-start w-100 course">
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      {% if user.groups[0].code != 'teachers' %} 
-      <button class="nav-link  active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Common</button>
-      {% endif %}
-      <button class="nav-link" id="v-pills-materials-course-tab" data-bs-toggle="pill" data-bs-target="#v-pills-materials-course" type="button" role="tab" aria-controls="v-pills-materials-course" aria-selected="false">Teachers</button>
+      <button class="nav-link  active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Teachers</button>
       <button class="nav-link" id="v-pills-curriculum-tab" data-bs-toggle="pill" data-bs-target="#v-pills-curriculum" type="button" role="tab" aria-controls="v-pills-curriculum" aria-selected="false">Admins</button>
     </div>
     <div class="tab-content w-100" id="v-pills-tabContent">
@@ -39,48 +36,58 @@ is_hidden = 0
                 <a href="https://apps.apple.com/us/app/tallanto-teachers/id1434284833" target="_blank" class="btn btn-light w-75">Apple</a>
             </div>
             <div class="col-lg-5 d-flex flex-column flex-column justify-content-start align-items-center">
-              <div class="creds w-100">
-                <h2>Статусы детей в системе:</h2>
-                <br>
-                
+              <div class="video-tutorial w-100">
+                <h2>Video tutorial:</h2>
+                <video width="240" height="320" controls>
+                  <source src="{{ 'assets/video/video_tutorial.mp4'|theme }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
               </div>
+              <br>
+              <div class="creds w-100">
+                <h2>Credentials:</h2>
+                <ul class="list-group">
+                  <li class="list-group-item"><kbd class="text-white">Login:</kbd> <code>Teacher</code></li>
+                  <li class="list-group-item"><kbd class="text-white">Password:</kbd> <code>P5z3Av</code></li>
+                </ul>
+              </div>
+              <br>
               <div class="statuses w-100">
-                <h2>Статусы детей в системе:</h2>
-                <br>
+                <h2>Kids statuses:</h2>
                   <div class="accordion w-100" id="accordionExample">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      <button class="accordion-button collapsed text-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         Посетил занятие
                       </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse w-100" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        Проставляем в конце занятия, если ребенок это занятие посетил.
                       </div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <button class="accordion-button collapsed text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Не придет
                       </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse w-100" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        Выставляем данный статус, если ребенок <strong>предупредил</strong>, что его не будет на занятии и соответственно, не пришел.
                       </div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         Прогул
                       </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse w-100" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        Выставляем данный статус, если ребенок <strong>не предупредил</strong>, что его не будет на занятии и соответственно, не пришел.
                       </div>
                     </div>
                   </div>
@@ -90,55 +97,51 @@ is_hidden = 0
           </div>
         </div>
       </div>
-      <div class="tab-pane fade w-100" id="v-pills-materials-course" role="tabpanel" aria-labelledby="v-pills-materials-course-tab" style="position: sticky; top: 5em;">
-        <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
-          <div class="row d-flex justify-content-around w-100" >
-            {% for sprint in sprints %}
-              {% if sprint.courses[0].slug == record.slug %}
-                <div style="width: 20%;">
-                  <a class="w-100" data-bs-toggle="collapse" href="#collapse-{{ sprint.slug }}" role="button" aria-expanded="false" aria-controls="collapse-{{ sprint.slug }}">  
-                    <div class="w-100">
-                            <div class="card p-3 mb-2">
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <div class="icon"> <i class="fas fa-running"></i> </div>
-                                        <div class="ms-2 c-details">
-                                            <h6 class="mb-0">{{ sprint.sprints_title }}</h6> <span>{{ sprint.start_date|date("d.m") }} - {{ sprint.end_date|date("d.m") }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="badge"> <span>{{ sprint.tag }}</span> </div>
-                                </div>
-                                <div class="mt-5"  style="margin-top: 0.5rem !important;">
-                                    <h3 class="heading">{{ sprint.name }}</h3>
-                                    <div class="mt-3">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:{{ sprint.lessons|length / lessons|length * 100 }}%" aria-valuenow="6" aria-valuemin="0" aria-valuemax="{{ lessons|length }}"></div>
-                                        </div>
-                                          <div class="mt-3"> <span class="text1">{{ sprint.lessons|length }} Applied <span class="text2">of {{ lessons|length }} lessons</span></span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </a>
-                      <div class="list-group collapse w-100" id="collapse-{{ sprint.slug }}">
-                        {% for lesson in lessons %}
-                          {% if lesson.sprints[0].sprints_title == sprint.sprints_title %}
-                            <a href="/courses/{{ record.slug }}/lesson/{{ lesson.id }}" class="list-group-item list-group-item-action">
-                              <span class="text-primary">{{ lesson.number_count }}.</span> {{ lesson.lesson_name }}</span>
-                            </a>
-                          {% endif %}
-                        {% endfor %}
-                      </div> 
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
       <div class="tab-pane fade w-100" id="v-pills-curriculum" role="tabpanel" aria-labelledby="v-pills-curriculum-tab">
         <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
-          <div class="row d-flex justify-content-around w-100">
-            <a class="btn btn-warning w-25" href="{{ record.curriculum.path }}" style="margin-top: 1rem;" download>Download</a>
+          <div class="row d-flex flex-row justify-content-around w-100 flex-wrap">
+            <div class="card w-25" style="margin-right: 1rem;">
+              <div class="card-body">
+                <h5 class="card-title">Создание занятия</h5>
+                <p class="card-text">Создать занятие достаточно просто - для этого перейдите во вкладку "занятия"...</p>
+                <a href="https://docs.google.com/document/d/1DH2umQq6X8teTWFmmm7NjsDm56KFQ9kz21SM9cNTyx0/edit?usp=sharing" class="btn btn-primary">Читать</a>
+              </div>
+            </div>
+            <div class="card w-25" style="margin-right: 1rem;">
+              <div class="card-body">
+                <h5 class="card-title">Создание ученика</h5>
+                <p class="card-text">Найдите иконку "+" во вкладке "ученик". По нажатию на нее откроется...</p>
+                <a href="https://docs.google.com/document/d/1CfnuQh4bohwNykovgjHIay5tB3-wHJFyiK5gY3kT_fU/edit?usp=sharing" class="btn btn-primary">Читать</a>
+              </div>
+            </div>
+            <div class="card w-25" style="margin-right: 1rem;">
+              <div class="card-body">
+                <h5 class="card-title">Создание группы</h5>
+                <p class="card-text">Когда создан ученик и создано первое занятие - пришла переходить к созданию группы...</p>
+                <a href="#" class="btn btn-primary">Читать</a>
+              </div>
+            </div>
+            <div class="card w-25" style="margin-right: 1rem; margin-top: 1rem;">
+              <div class="card-body">
+                <h5 class="card-title">Статусы детей</h5>
+                <p class="card-text">Видео по ссылке ниже:</p>
+                <a href="https://drive.google.com/file/d/1-vWsj9MG10Igzq_D8dQ8aZ5CLVDmgMTo/view?usp=sharing" class="btn btn-primary">Смотреть</a>
+              </div>
+            </div>
+            <div class="card w-25" style="margin-right: 1rem; margin-top: 1rem;">
+              <div class="card-body">
+                <h5 class="card-title">Работа с отказниками</h5>
+                <p class="card-text">Видео по ссылке ниже:</p>
+                <a href="https://drive.google.com/file/d/1ufZqAwwXPS5LOaN8_QN94TwCYztgo9Cw/view?usp=sharing" class="btn btn-primary">Смотреть</a>
+              </div>
+            </div>
+            <div class="card w-25" style="margin-right: 1rem; margin-top: 1rem;">
+              <div class="card-body">
+                <h5 class="card-title">Преподаватели и курсы</h5>
+                <p class="card-text">Видео по ссылке ниже:</p>
+                <a href="https://drive.google.com/file/d/1sG2fDK83X4u32eFJxyQI76rJ8kivS-he/view?usp=sharing" class="btn btn-primary">Смотреть</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
