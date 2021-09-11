@@ -3,6 +3,10 @@ fields:
         label: 'Lesson title'
         span: auto
         type: text
+    number_count:
+        label: Number
+        span: auto
+        type: number
     slug:
         label: slug
         span: auto
@@ -15,16 +19,6 @@ fields:
         size: large
         span: auto
         type: richeditor
-    course_image_inner:
-        label: 'Course image'
-        mode: image
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        span: auto
-        type: fileupload
-        comment: '( optional )'
 tabs:
     fields:
         field1:

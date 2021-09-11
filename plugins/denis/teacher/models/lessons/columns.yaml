@@ -1,11 +1,11 @@
 columns:
-    lesson_name:
-        label: Title
-        type: text
+    number_count:
+        label: 'Lesson number'
+        type: number
         searchable: true
         sortable: true
-    short_description:
-        label: Descr
+    lesson_name:
+        label: 'Lesson name'
         type: text
         searchable: true
         sortable: true

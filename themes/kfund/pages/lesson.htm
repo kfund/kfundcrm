@@ -105,9 +105,8 @@ externalRelationParam = "slug"
                           {% else %}
                           <p class="text-dark">There is no main video for lesson. Tag course courator in that case.</p>
                         {% endif %}
-                        <br><br>
                         {% if record.video_link_2 %}
-                        <iframe width="100%" height="600px" src="https://www.youtube.com/embed/{{ record.video_link_2 }}">
+                        <iframe width="100%" height="600px" src="https://www.youtube.com/embed/{{ record.video_link_2 }}" style="margin-top:1rem">
                         </iframe>
                           {% else %}
                           <p class="text-dark">There is no video here. Use materials above.</p>
@@ -120,7 +119,7 @@ externalRelationParam = "slug"
                     <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
                       <div class="row w-75 table-none">
                         <iframe src="{{ record.presentation_link }}" frameborder="0" width="100%" height="600px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                      <a class="btn btn-warning" href="{{ record.presentation_link }}" download>Download</a>
+                        <a class="btn btn-warning" href="{{ record.presentation_link }}" style="margin-top:1rem" download>Download</a>
                       </div>
                     </div>
                   </div>
@@ -128,7 +127,7 @@ externalRelationParam = "slug"
                     <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
                       <div class="row w-75 table-none">
                         {% if record.material_link_1 %}
-                        <a href="{{ record.material_link_1.path }}" class="btn btn-warning name-view" style="width: 200px; margin:1rem" download>Download</a>
+                        <a href="{{ record.material_link_1 }}" class="btn btn-warning name-view" style="width: 200px; margin:1rem">Download</a>
                         {% else %}
                             <p>There is no additional materials</p>
                         {% endif %}

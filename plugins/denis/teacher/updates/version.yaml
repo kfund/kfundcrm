@@ -156,3 +156,6 @@
 1.0.53:
     - 'Created table denis_teacher_sprints_courses'
     - builder_table_create_denis_teacher_sprints_courses.php
+1.0.54:
+    - 'Updated table denis_teacher_lessons'
+    - builder_table_update_denis_teacher_lessons_3.php
