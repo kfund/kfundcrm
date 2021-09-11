@@ -1,0 +1,148 @@
+title = "Schools"
+url = "/schools"
+layout = "default"
+==
+<header class="header" id="header">
+  <div class="header_toggle"> <i class='fas fa-bars' id="header-toggle"></i> </div>
+  <h4 class="display-4 fw-normal">Schools</h1>
+</header>
+
+<main class="bd-main w-100">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <ul class="nav nav-pills mb-3 d-flex flex-row justify-content-between course-menu" id="pills-tab" role="tablist" style="width: 90%; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+        <li class="nav-item w-50" role="presentation">
+          <button class="nav-link w-100 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Graphical</button>
+        </li>
+        <li class="nav-item w-50" role="presentation">
+          <button class="nav-link w-100" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Cards</button>
+        </li>
+      </ul>
+      <div class="tab-content course-menu w-100" id="pills-tabContent">
+        <div class="tab-pane fade show active w-100" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="tab-content-inner w-100">
+            <div id="container" class="w-100"></div>
+          </div>
+        </div>
+        <div class="tab-pane fade w-100" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            {% partial 'schools/schools_card' %}
+          </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+  function sortTeachers() {
+    let cityValue = document.querySelector(".select-city").value;
+    
+    let kharkiv = document.querySelectorAll('.kharkiv')
+    let kryvyiRig = document.querySelectorAll('.kryvyi-rig')
+    let cherkassy = document.querySelectorAll('.cherkassy')
+
+    if ( cityValue == '1' ) {
+      for (const person of kryvyiRig) {
+        if (person.classList.contains("hide")) {
+          
+        }
+        else {
+          person.classList.toggle('hide')
+        }
+      }
+      for (const person of cherkassy) {
+        if (person.classList.contains("hide")) {
+          
+        }
+        else {
+          person.classList.toggle('hide')
+        }
+      }
+      for (const person of kharkiv) {
+        if (person.classList.contains("hide")) {
+          person.classList.toggle('hide')
+        }
+        else {
+          
+        }
+      }
+      
+    } 
+    else if ( cityValue == '2' ) {
+      for (const person of kharkiv) {
+        if (person.classList.contains("hide")) {
+          
+        }
+        else {
+          person.classList.toggle('hide')
+        }
+      }
+      for (const person of cherkassy) {
+        if (person.classList.contains("hide")) {
+          
+        }
+        else {
+          person.classList.toggle('hide')
+        }
+      }
+      for (const person of kryvyiRig) {
+        if (person.classList.contains("hide")) {
+          person.classList.toggle('hide')
+        }
+        else {
+          
+        }
+      }
+    }
+    else if ( cityValue == '3' ){
+      for (const person of kharkiv) {
+        if (person.classList.contains("hide")) {
+          
+        }
+        else {
+          person.classList.toggle('hide')
+        }
+      }
+      for (const person of kryvyiRig) {
+        if (person.classList.contains("hide")) {
+          
+        }
+        else {
+          person.classList.toggle('hide')
+        }
+      }
+      for (const person of cherkassy) {
+        if (person.classList.contains("hide")) {
+          person.classList.toggle('hide')
+        }
+        else {
+          
+        }
+      }
+    }
+    else {
+      for (const person of kharkiv) {
+        if (person.classList.contains("hide")) {
+          person.classList.toggle('hide')
+        }
+        else {
+          
+        }
+      }
+      for (const person of cherkassy) {
+        if (person.classList.contains("hide")) {
+          person.classList.toggle('hide')
+        }
+        else {
+          
+        }
+      }
+      for (const person of kryvyiRig) {
+        if (person.classList.contains("hide")) {
+          person.classList.toggle('hide')
+        }
+        else {
+          
+        }
+      }
+    }
+
+  }
+</script>

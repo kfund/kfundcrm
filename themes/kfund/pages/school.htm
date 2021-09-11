@@ -1,0 +1,43 @@
+title = "School"
+url = "/schools/:slug"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Denis\Teacher\Models\Schools"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "schools_school"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+
+<main class="bd-main w-75 aside-screen overflow-auto">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center title-header w-100">
+      <h1 class="display-4 fw-normal">{{ record.schools_school }}</h1>
+    </div>
+    <div class="row">
+      <h2>City:</h2>
+      <div class="row d-flex">
+        {% for city in record.cities %}
+          <a href="/cities/{{ city.slug }}" class="btn btn-dark name-view" style="width: 200px; margin:1rem">{{ city.cities_city }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <h2>Related teachers:</h2>
+      <div class="row d-flex justify-content-start flex-wrap">
+        {% for teacher in record.teacher %}
+          <a href="/teachers/{{ teacher.slug }}" class="btn btn-dark name-view" style="width: 200px; margin:1rem">{{ teacher.name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <h2>Related courses:</h2>
+      <div class="row d-flex justify-content-start flex-wrap">
+        {% for course in record.courses %}
+          <a href="/courses/{{ course.slug }}" class="btn btn-dark" style="width: 200px; margin:1rem">{{ course.courses_course }}</a>
+        {% endfor %}
+      </div>
+    </div>
+</main>

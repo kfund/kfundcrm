@@ -1,0 +1,57 @@
+plugin:
+    name: 'denis.teacher::lang.plugin.name'
+    description: 'denis.teacher::lang.plugin.description'
+    author: Denis
+    icon: oc-icon-pencil
+    homepage: ''
+permissions:
+    denis_teacher.manage_teachers:
+        tab: 'denis.teacher::lang.plugin.name'
+        label: 'denis.teacher::lang.teachers.manage_teachers'
+    denis_teacher.manage_cities:
+        tab: 'denis.teacher::lang.plugin.name'
+        label: 'denis.teacher::lang.city.manage_cities'
+    denis_teacher.manage_schools:
+        tab: 'denis.teacher::lang.plugin.name'
+        label: 'denis.teacher::lang.schools.manage_schools'
+    denis_teacher.manage_courses:
+        tab: 'denis.teacher::lang.plugin.name'
+        label: 'denis.teacher::lang.courses.manage_courses'
+    denis_teacher.manage_lessons:
+        tab: 'denis.teacher::lang.plugin.name'
+        label: 'denis.teacher::lang.lessons.manage_lessons'
+navigation:
+    Teachers:
+        label: Teachers
+        url: denis/teacher/teachers
+        icon: icon-book
+        permissions: {  }
+        sideMenu:
+            Teacher:
+                label: Teacher
+                url: denis/teacher/teachers
+                icon: icon-star
+            Cities:
+                label: Cities
+                url: denis/teacher/cities
+                icon: icon-trello
+            Schools:
+                label: Schools
+                url: denis/teacher/schools
+                icon: icon-simplybuilt
+            Courses:
+                label: Courses
+                url: denis/teacher/courses
+                icon: icon-sitemap
+            Lessons:
+                label: Lessons
+                url: denis/teacher/lessons
+                icon: icon-subscript
+            news:
+                label: News
+                url: denis/teacher/news
+                icon: icon-text-height
+            sprints:
+                label: Sprints
+                url: denis/teacher/sprints
+                icon: icon-sitemap

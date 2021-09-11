@@ -1,0 +1,22 @@
+fields:
+    cities_city:
+        label: 'denis.teacher::lang.cities.city'
+        span: auto
+        type: text
+    slug:
+        label: 'denis.teacher::lang.cities.slug'
+        span: auto
+        preset:
+            field: city
+            type: slug
+        type: text
+    courses:
+        label: courses
+        nameFrom: courses_course
+        descriptionFrom: description
+        span: auto
+        type: relation
+    cities_students:
+        label: cities_students
+        span: auto
+        type: number

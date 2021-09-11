@@ -1,0 +1,12 @@
+title: Teachers
+modelClass: Denis\Teacher\Models\Teacher
+list: $/denis/teacher/models/teacher/columns.yaml
+recordUrl: 'denis/teacher/teachers/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

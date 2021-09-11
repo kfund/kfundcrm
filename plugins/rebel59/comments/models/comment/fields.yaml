@@ -1,0 +1,29 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    author_name:
+        label: rebel59.comments::lang.models.comment.author_name
+        span: left
+    author_email:
+        label: rebel59.comments::lang.models.comment.author_email
+        span: right
+    content:
+        label: rebel59.comments::lang.models.comment.content
+        type: textarea
+    created_at:
+        label: rebel59.comments::lang.models.comment.created_at
+        type: datepicker
+        mode: datetime
+    notify:
+        label: rebel59.comments::lang.models.comment.notify
+        type: switch
+        span: right
+    page_name:
+        label: rebel59.comments::lang.models.comment.page_name
+        span: left
+    replies:
+        type: partial
+        path: $/rebel59/comments/models/comment/_replies_field.htm
+        span: left

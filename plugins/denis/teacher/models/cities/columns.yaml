@@ -1,0 +1,5 @@
+columns:
+    cities_city:
+        label: city
+        type: text
+        sortable: true

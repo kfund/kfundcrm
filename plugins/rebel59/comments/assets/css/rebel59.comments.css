@@ -1,0 +1,13 @@
+[data-action='save'],
+[data-action='cancel'] {
+    display: none;
+}
+
+.edit [data-action='save'],
+.edit [data-action='cancel'] {
+    display: inline-block;
+}
+
+.edit [data-action='edit'] {
+    display: none;
+}

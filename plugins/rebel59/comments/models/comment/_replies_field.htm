@@ -1,0 +1,24 @@
+<?php if($model->children->count() > 0){ ?>
+    <h2><?= $model->children->count() ?> Replies</h2>
+    <?php
+    foreach($model->children as $child){
+    ?>
+<div class="comment-box" style="border-radius: 10px; background: #fff; border: 1px solid #00b3ee; margin-bottom: 20px; padding: 20px 30px;">
+
+    <h4><strong>
+        <?= $child->author_name ?> ( <?= $child->author_email ?> ):
+    </h4></strong>
+    <p>
+        <?= nl2br($child->content) ?>
+    </p>
+    <hr>
+    <span><a href="<?= Backend::url('rebel59/comments/comments/update/' . $child->id) ?>" target="_blank">Edit this comment</a></span>
+</div>
+
+<?php
+}
+?>
+<?php }else{
+?>
+<h2>This comment has no replies.</h2>
+<?php } ?>

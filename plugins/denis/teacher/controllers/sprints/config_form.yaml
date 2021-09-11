@@ -1,0 +1,10 @@
+name: Sprints
+form: $/denis/teacher/models/sprints/fields.yaml
+modelClass: Denis\Teacher\Models\Sprints
+defaultRedirect: denis/teacher/sprints
+create:
+    redirect: 'denis/teacher/sprints/update/:id'
+    redirectClose: denis/teacher/sprints
+update:
+    redirect: denis/teacher/sprints
+    redirectClose: denis/teacher/sprints

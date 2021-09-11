@@ -1,0 +1,82 @@
+fields:
+    schools_school:
+        label: School
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: schools_school
+            type: slug
+        type: text
+    start_date:
+        label: start_date
+        mode: date
+        span: auto
+        type: datepicker
+    short_name:
+        label: short_name
+        span: auto
+        type: text
+    headmaster:
+        label: headmaster
+        span: auto
+        type: text
+    head_phone:
+        label: head_phone
+        span: auto
+        type: number
+    adress:
+        label: school_adress
+        span: auto
+        type: text
+    coordinates:
+        label: coordinates
+        span: auto
+        type: text
+    cities:
+        label: cities
+        nameFrom: cities_city
+        descriptionFrom: description
+        span: auto
+        type: relation
+    courses:
+        label: courses
+        nameFrom: courses_course
+        descriptionFrom: description
+        span: auto
+        type: relation
+tabs:
+    fields:
+        document1:
+            label: school_document1
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Documents
+        document2:
+            label: school_document2
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Documents
+        school_image:
+            label: school_image
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Documents

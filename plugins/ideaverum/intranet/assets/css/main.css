@@ -1,0 +1,105 @@
+.bg-success{
+    background-color:#28a745!important;
+}
+
+.list-group{
+    padding:2px;
+}
+
+.list-group-item.active{
+    z-index: 2;
+    color: #fff!important;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.list-group-item{
+    position: relative;
+    display: block;
+    padding: 12px 20px 12px 20px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.400);
+    line-height: 1.5;
+}
+
+.dataTables_length{
+    padding:5px;
+}
+
+.dataTables_length select{
+    margin-left:5px;
+}
+
+.table-search{
+    display: grid;
+    font-size: 15px;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom:8px;
+}
+
+.dataTables_paginate{
+    text-align: right;
+}
+
+.paginate_button {
+    margin:5px;
+}
+
+.submit-files{
+    margin: 5px 0 5px 0;
+    text-align: center;
+}
+
+
+.selected{
+    font-weight: bolder;
+}
+
+.edit-category{
+    position: absolute;
+    left: 5px;
+    font-size: 2rem;
+    color:#1c9df3;
+}
+
+.delete-category{
+    position: absolute;
+    right: 5px;
+    font-size: 2rem;
+    color:#ff0000;
+}
+
+.dropzone{
+    border-style: dashed!important;
+    border-color:#83BE4D!important;
+}
+
+#intranetVue a{
+    color:#000;
+}
+
+.current {
+    filter: brightness(0.7);
+}
+
+#tablica_filter input {
+    margin: 0;
+}
+
+#tablica_filter label {
+    text-align: center;
+}
+
+.table {
+    width: 972px;
+}
+
+.table-bordered > tbody > tr > td {
+    border: 2px solid #ddd;
+}
+
+.table-striped {
+    border: 2px solid #ddd;
+}

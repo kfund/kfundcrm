@@ -1,0 +1,64 @@
+title = "Courses"
+url = "/courses"
+layout = "default"
+is_hidden = 0
+
+[builderList]
+modelClass = "Denis\Teacher\Models\Courses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "courses_course"
+noRecordsMessage = "No records found"
+detailsPage = "course"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+<header class="header" id="header">
+  <div class="header_toggle"> <i class='fas fa-bars' id="header-toggle"></i> </div>
+  <h2 class="fw-normal">Courses</h1>
+</header>
+    <main class="bd-main w-100">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center w-100">
+      <ul class="nav nav-pills mb-3 w-100 course-menu d-flex flex-row justify-content-start" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Programming</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Entrepreneurship</button>
+        </li>
+      </ul>
+      <div class="tab-content w-100 " id="pills-tabContent">
+        <div class="tab-pane fade show active w-100" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="tab-content-inner d-flex flex-row justify-content-around w-100 flex-wrap">
+            {% for record in records %}
+            <div class="w-25" style="margin: 0 1rem;">
+              <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-white bg-primary border-primary">
+                  <h4 class="my-0 fw-normal text-white">{{ record.courses_course }}</h4>
+                </div>
+                <div class="card-body">
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>Lessons: {{ record.lessons_count }}</li>
+                    <li>Start date: {{ record.date_of_start }}</li>
+                    <li>Student age: {{ record.students_age }}</li>
+                  </ul>
+                  <a href="/courses/{{ record.slug }}" type="button" class="w-100 btn btn-lg btn-outline-primary">Get started</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="tab-pane fade show w-100" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="tab-content-inner d-flex flex-row justify-content-around w-100 flex-wrap">
+          <div>
+
+          </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </main>

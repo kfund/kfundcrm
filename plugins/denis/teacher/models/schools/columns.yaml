@@ -1,0 +1,16 @@
+columns:
+    schools_school:
+        label: School
+        type: text
+        searchable: true
+        sortable: true
+    start_date:
+        label: 'Start date'
+        type: date
+        searchable: true
+        sortable: true
+    headmaster:
+        label: Headmaster
+        type: text
+        searchable: true
+        sortable: true

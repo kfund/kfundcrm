@@ -1,0 +1,12 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    content:
+        label: rebel59.comments::lang.models.comment.content
+        searchable: true
+    page_name:
+        label: rebel59.comments::lang.models.comment.page_name
+        searchable: true
+

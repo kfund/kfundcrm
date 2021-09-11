@@ -1,0 +1,26 @@
+{% if __SELF__.comments %}
+    <div id="comment-list">
+        {% partial __SELF__ ~ "::comments"
+            comments = __SELF__.comments
+        %}
+    </div>
+
+{%else%}
+<p>There are no comments for this page.</p>
+{% endif %}
+<hr>
+
+{% if disableComments == false %}
+    {% if disableGuestComments == true and not user %}
+
+        <p>Comments can only be made by registered users. Please <a href="{{ registerPage | page }}">register or sign in</a> to start making comments.</p>
+    {% else %}
+        <p class="lead">Leave a reply</p>
+
+        {% partial __SELF__ ~ '::form.htm' %}
+
+    {% endif %}
+{% else %}
+<p>Comments have been disabled for this page.</p>
+
+{% endif%}

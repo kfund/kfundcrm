@@ -1,0 +1,10 @@
+name: News
+form: $/denis/teacher/models/news/fields.yaml
+modelClass: Denis\Teacher\Models\News
+defaultRedirect: denis/teacher/news
+create:
+    redirect: 'denis/teacher/news/update/:id'
+    redirectClose: denis/teacher/news
+update:
+    redirect: denis/teacher/news
+    redirectClose: denis/teacher/news

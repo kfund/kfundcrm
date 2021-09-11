@@ -1,0 +1,44 @@
+<div class="reply reply-form" data-reply-to="{{parent_id}}" style="padding-left: 20px;">
+    <strong>Type your comment here</strong>
+    <form
+        data-request="{{ __SELF__ }}::onStoreComment"
+        data-request-validate>
+        {% if not auth  %}
+            <small class="form-text text-muted">Please note that you can not edit you comment in any way if you submit it without logging in. You will however get email notifications if you leave this option enabled.</small>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Name" name="author_name">
+                <div class="form-control-feedback" data-validate-for="author_name">Uw naam is een verplicht veld.</div>
+
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" name="author_email">
+                <div class="form-control-feedback" data-validate-for="author_email">Uw naam is een verplicht veld.</div>
+
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            <textarea class="form-control" name="content" rows="3"></textarea>
+            <div class="form-control-feedback" data-validate-for="content">Uw naam is een verplicht veld.</div>
+
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="1" checked name="notify">
+                Notify me when other people reply on this comment.
+            </label>
+        </div>
+        <input type="hidden" name="parent_id" value="{{parent_id}}">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="javascript" class="btn btn-secondary" data-action="cancel-reply">Cancel</a>
+    </form>
+</div>
+<script>
+
+    $('#comment-{{parent_id}} .reply-form [data-action="cancel-reply"]').on('click', function(event) {
+        event.preventDefault();
+        $.oc.commentmanager.cancelReply({{parent_id}});
+    });
+
+</script>

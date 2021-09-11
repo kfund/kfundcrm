@@ -1,0 +1,11 @@
+columns:
+    sprints_title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    name:
+        label: Name
+        type: text
+        searchable: true
+        sortable: true

@@ -1,0 +1,36 @@
+title = "Lessons"
+url = "/lessons"
+layout = "default"
+is_hidden = 0
+
+[builderList]
+modelClass = "Denis\Teacher\Models\Lessons"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "lesson_name"
+noRecordsMessage = "No records found"
+detailsPage = "lesson"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+
+<main class="bd-main w-75 aside-screen overflow-auto">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center title-header">
+      <h1 class="display-4 fw-normal">Lessons</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-around overflow-auto" style="margin-left: 0.5rem;">
+        {% for record in records %}
+        <div class="card" style="width: 18rem; margin-bottom: 0.5rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ record.lesson_name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Lesson {{record.id}}</h6>
+              <div class="card-text overflow-auto" style="height: 6rem;">{{ record.short_description|raw }}</div>
+              <a href="/lesson/{{record.id}}" class="card-link">Go ahead!</a>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    </main>

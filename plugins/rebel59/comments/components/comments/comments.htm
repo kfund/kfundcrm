@@ -1,0 +1,44 @@
+{% for comment in comments %}
+    <div id="comment-{{comment.id}}" class="card" style="margin-bottom: 20px;">
+        <div class="card comment">
+            <div class="card-block">
+                <div class="card-header">
+                    <h5 class="card-subtitle mb-2 text-muted"> {{comment.author_name}}</h6>
+                  </div>
+                  <div class="card-body">
+                    <p class="comment-content card-text">{{ comment.content | nl2br }}                    </p>
+                    {% if not user or (user.id != comment.user_id) %}
+                <a
+                    href="javascript;"
+                    data-action="reply"
+                    data-request-data="parent_id: {{comment.id}}"
+                    class="btn btn-success"
+                    data-request="{{ __SELF__ }}::onCreateReply"
+                    data-request-success="$(this).hide()">Reply</a>
+                {% endif %}
+                {% if user and (user.id == comment.user_id) %}
+                    <a href="javascript;" class="btn btn-warning" data-action="edit" data-comment-id="{{comment.id}}">Edit</a>
+                    <a href="javascript;" class="btn btn-primary" data-action="save" data-comment-id="{{comment.id}}">Save</a>
+                    <a href="javascript;" class="btn btn-primary" data-action="cancel" data-comment-id="{{comment.id}}">Cancel</a>
+                {% endif %}
+
+                {% if not comment.children.count and (user and user.id == comment.user_id) %}
+                    <a href="javascript;" data-request-data="comment_id: {{comment.id}}" class="btn btn-danger" data-request="{{ __SELF__ }}::onDeleteComment">Delete</a>
+                {% endif %}
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+    {% if comment.children.count %}
+        <div class="reply" style="padding-left: 20px;">
+            {% partial __SELF__ ~ "::comments"
+                comments=comment.children
+            %}
+        </div>
+    {% endif %}
+
+{% endfor %}
+
+{% partial __SELF__ ~ "::pagination" %}

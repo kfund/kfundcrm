@@ -1,0 +1,178 @@
+description = "Default layout"
+
+[session]
+security = "user"
+redirect = "login"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>KFund LMS - {{ this.page.title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="OctoberCMS">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="OctoberCMS">
+        <link rel="icon" href="{{ 'assets/images/title_logo.ico'|theme }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ 'assets/css/style.css'|theme }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {% styles %}
+    </head>
+    <body id="body-pd" class="w-100 h-100" style="overflow-x: hidden;">
+        <div class="row d-flex flex-row">
+            <!-- Left aside -->
+            {% partial 'aside' %}
+
+            <!-- Content -->
+            {% page %}
+        </div>
+
+        <!-- Scripts -->
+
+        {% if this.page.url == '/schools' %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+        <script src="https://cdn.anychart.com/geodata/2.1.0/countries/ukraine/ukraine.js"></script>
+        <script type="text/javascript">anychart.onDocumentReady(function() {
+            // create map
+            var map = anychart.map();
+
+            map.legend(true);
+
+            // create data set
+            var dataSet = anychart.data.set(
+            [{"id":"UA.KR","value":0},
+                {"id":"UA.MY","value":1},
+                {"id":"UA.CH","value":2},
+                {"id":"UA.RV","value":3},
+                {"id":"UA.CV","value":4},
+                {"id":"UA.IF","value":5},
+                {"id":"UA.KM","value":6},
+                {"id":"UA.LV","value":7},
+                {"id":"UA.TP","value":8},
+                {"id":"UA.ZK","value":9},
+                {"id":"UA.VO","value":10},
+                {"id":"UA.CK","value":11},
+                {"id":"UA.KH","value":12},
+                {"id":"UA.KV","value":13},
+                {"id":"UA.903","value":14},
+                {"id":"UA.VI","value":15},
+                {"id":"UA.ZT","value":16},
+                {"id":"UA.SM","value":17},
+                {"id":"UA.DP","value":18},
+                {"id":"UA.DT","value":19},
+                {"id":"UA.KK","value":20},
+                {"id":"UA.LH","value":21},
+                {"id":"UA.PL","value":22},
+                {"id":"UA.ZP","value":23},
+                {"id":"UA.6354","value":24},
+                {"id":"UA.KS","value":25},
+                {"id":"UA.SC","value":26}]
+            );
+
+
+            var webSchools = [
+            {lat: 50.10, long: 36.10, name: "169", courses: 3, students: 68},
+            {lat: 50.11, long: 36.37, name: "89", courses: 2, students: 78},
+            {lat: 49.90, long: 36.20, name: "14", courses: 2, students: 78},
+            {lat: 49.43, long: 32.00, name: "32", courses: 1, students: 68},
+            {lat: 49.48, long: 32.20, name: "3", courses: 2, students: 78},
+            {lat: 49.7, long: 32.40, name: "FIMLI", courses: 2, students: 78},
+            ];
+
+            var entSchools = [
+            {lat: 50.10, long: 36.10, name: "169", courses: 3, students: 68},
+            {lat: 50.11, long: 36.37, name: "89", courses: 2, students: 78},
+            {lat: 49.90, long: 36.20, name: "14", courses: 2, students: 78},
+            ];
+
+            // set geo data, you can find this map in our geo maps collection
+            // https://cdn.anychart.com/#maps-collection
+            map.geoData(anychart.maps['ukraine']);
+
+            var web_schools_points = map.marker(webSchools);
+            var ent_schools_points = map.marker(entSchools);
+
+            // set the size of CITRUS markers
+            web_schools_points.normal().size(4);
+            web_schools_points.hovered().size(10);
+            web_schools_points.selected().size(10);
+
+            // create choropleth series
+            series = map.choropleth(dataSet);
+
+            console.log(series)      
+
+            // set geoIdField to 'id', this field contains in geo data meta properties
+            series.geoIdField('id');
+
+            // set map color settings
+            series.colorScale(anychart.scales.linearColor('#d3dae6', '#dfe1e6'));
+            series.hovered().fill('#3182bd');
+
+            map.title("Ukraine");
+
+            //set map container id (div)
+            map.container('container');
+
+            //initiate map drawing
+            map.draw();
+            });
+        </script>
+        {% endif %}
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+          
+          const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+          const toggle = document.getElementById(toggleId),
+          nav = document.getElementById(navId),
+          bodypd = document.getElementById(bodyId),
+          headerpd = document.getElementById(headerId)
+          
+          console.log('here')
+          
+          // Validate that all variables exist
+          if(toggle && nav && bodypd && headerpd){
+          toggle.addEventListener('click', ()=>{
+          // show navbar
+          nav.classList.toggle('show')
+          // change icon
+          toggle.classList.toggle('fa-times')
+          // add padding to body
+          bodypd.classList.toggle('body-pd')
+          // add padding to header
+          headerpd.classList.toggle('body-pd')
+          })
+          }
+          }
+          
+          showNavbar('header-toggle','nav-bar','body-pd','header')
+          
+          /*===== LINK ACTIVE =====*/
+          const linkColor = document.querySelectorAll('.nav_link')
+          
+          function colorLink(){
+          if(linkColor){
+          linkColor.forEach(l=> l.classList.remove('active'))
+          this.classList.add('active')
+          }
+          }
+          linkColor.forEach(l=> l.addEventListener('click', colorLink))
+          
+          // Your code to run since DOM is loaded and ready
+          });
+          </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+        {% framework extras %}
+        {% scripts %}
+    </body>
+</html>

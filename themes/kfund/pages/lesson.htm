@@ -1,0 +1,155 @@
+url = "/courses/:slug/lesson/:id"
+layout = "default"
+title = "Lesson"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Denis\Teacher\Models\Lessons"
+identifierValue = "{{ :id }}"
+modelKeyColumn = "id"
+displayColumn = "lesson_name"
+notFoundMessage = "Record not found"
+
+[comments]
+loadCss = 1
+loadJs = 1
+registerPage = "cities"
+listElement = "#comment-list"
+commentsPerPage = 10
+pageNumber = "{{ :page }}"
+unsubscribePage = "cities"
+externalRelationParam = "slug"
+==
+{% set record = builderDetails.record %}
+<header class="header" id="header">
+  <div class="header_toggle"> <i class='fas fa-bars' id="header-toggle"></i> </div>
+  <h2 class="text-primary fw-normal">{{ record.lesson_name }}</h2>
+</header>
+<main class="bd-main w-100">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center w-100">
+      <ul class="nav nav-pills mb-3 d-flex flex-row justify-content-between w-100" id="pills-tab" role="tablist" style="width: 90%; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+        <li class="nav-item w-25" role="presentation">
+          <button class="nav-link w-100 active" id="pills-plan-tab" data-bs-toggle="pill" data-bs-target="#pills-plan" type="button" role="tab" aria-controls="pills-plan" aria-selected="true">Lesson plan</button>
+        </li>
+        <li class="nav-item w-25" role="presentation">
+          <button class="nav-link w-100" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Process</button>
+        </li>
+        <li class="nav-item w-25" role="presentation">
+          <button class="nav-link w-100" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Tasks</button>
+        </li>
+        <li class="nav-item w-25" role="presentation">
+            <button class="nav-link w-100" id="pills-materials-tab" data-bs-toggle="pill" data-bs-target="#pills-materials" type="button" role="tab" aria-controls="pills-materials" aria-selected="false">Materials</button>
+        </li>
+      </ul>
+      <div class="tab-content course-menu overflow-auto w-100" id="pills-tabContent" style="width: 90%;">
+        <div class="tab-pane fade show active overflow-auto w-100" id="pills-plan" role="tabpanel" aria-labelledby="pills-plan-tab">
+          <div class="tab-content-inner overflow-auto w-100 scrollable d-flex flex-row justify-content-center">
+            <div class="row w-75 table-none">
+              {{ record.short_description|raw }}
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade overflow-auto w-100" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="tab-content-inner overflow-auto w-100 scrollable d-flex flex-row justify-content-center">
+            <div class="row w-75 table-none">
+              {{ record.field1|raw }}
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade w-100" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="d-flex align-items-start w-100">
+            <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <button class="nav-link active" id="v-pills-main-tab" data-bs-toggle="pill" data-bs-target="#v-pills-main" type="button" role="tab" aria-controls="v-pills-main" aria-selected="true">Main</button>
+              <button class="nav-link" id="v-pills-add-tab" data-bs-toggle="pill" data-bs-target="#v-pills-add" type="button" role="tab" aria-controls="v-pillsadd" aria-selected="false">Add</button>
+            </div>
+            <div class="tab-content w-100" id="v-pills-tabContent">
+              <div class="tab-pane fade show active w-100" id="v-pills-main" role="tabpanel" aria-labelledby="v-pills-main-tab">
+                <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                  <div class="row w-75">
+                    <p class="text-dark">Expected result:</p>
+                    {{ record.field2|raw }}
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade w-100" id="v-pills-add" role="tabpanel" aria-labelledby="v-pills-add-tab">
+                <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                  <div class="row w-75 table-none">
+                    {% if record.field3 %}
+                      <p class="text-dark">Expected result:</p>
+                      {{ record.field3|raw }}
+                      {% else %}
+                      <p class="text-dark">There is no additional materials</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+            
+        </div>
+        <div class="tab-pane fade w-100" id="pills-materials" role="tabpanel" aria-labelledby="pills-materials-tab">
+            <div class="d-flex align-items-start w-100">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Videos</button>
+                  <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Pres</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Files</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-comments" type="button" role="tab" aria-controls="v-pills-comments" aria-selected="false">Comments</button>
+                </div>
+                <div class="tab-content w-100" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active w-100" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                      <div class="row w-75 table-none">
+                        {% if record.video_link_1 %}
+                        <iframe width="100%" height="600px" src="https://www.youtube.com/embed/{{ record.video_link_1 }}">
+                        </iframe>
+                          {% else %}
+                          <p class="text-dark">There is no main video for lesson. Tag course courator in that case.</p>
+                        {% endif %}
+                        <br><br>
+                        {% if record.video_link_2 %}
+                        <iframe width="100%" height="600px" src="https://www.youtube.com/embed/{{ record.video_link_2 }}">
+                        </iframe>
+                          {% else %}
+                          <p class="text-dark">There is no video here. Use materials above.</p>
+                        {% endif %}
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="tab-pane fade w-100" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                      <div class="row w-75 table-none">
+                        <iframe src="{{ record.presentation_link }}" frameborder="0" width="100%" height="600px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                      <a class="btn btn-warning" href="{{ record.presentation_link }}" download>Download</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade w-100" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                      <div class="row w-75 table-none">
+                        {% if record.material_link_1 %}
+                        <a href="{{ record.material_link_1.path }}" class="btn btn-warning name-view" style="width: 200px; margin:1rem" download>Download</a>
+                        {% else %}
+                            <p>There is no additional materials</p>
+                        {% endif %}
+                        <br>
+                        {% if record.material_link_2 %}
+                        <a href="{{ record.material_link_2.path }}" class="btn btn-warning name-view" style="width: 200px; margin:1rem" download>Download</a>
+                        {% else %}
+                        {% endif %}
+                      </div> 
+                    </div>
+                  </div>
+                  <div class="tab-pane fade w-100" id="v-pills-comments" role="tabpanel" aria-labelledby="v-pills-comments-tab">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                      <div class="row w-75 table-none">
+                        {% component 'comments' %}
+                      </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </main>

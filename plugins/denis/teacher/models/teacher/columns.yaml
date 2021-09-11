@@ -1,0 +1,16 @@
+columns:
+    name:
+        label: 'denis.teacher::lang.teacher.name'
+        type: text
+        searchable: true
+        sortable: true
+    city:
+        label: 'denis.teacher::lang.teacher.city'
+        type: text
+        searchable: true
+        sortable: true
+    mobile:
+        label: 'denis.teacher::lang.teacher.mobile'
+        type: number
+        searchable: true
+        sortable: true

@@ -1,0 +1,10 @@
+1.0.0:
+    - First version
+    - Version_1_0_0.php
+    - Seed_1_0_0.php
+1.0.1:
+    - Second version - translation added
+1.0.2:
+    - Third version - disabled creating subcategories inside Uncategorised category
+1.0.3:
+    - Fourth version - little datatable style change, toastr removed, sweetalert is used in place of toastr, README updated, USERMANUAL added

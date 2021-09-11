@@ -1,0 +1,10 @@
+name: Cities
+form: $/denis/teacher/models/cities/fields.yaml
+modelClass: Denis\Teacher\Models\Cities
+defaultRedirect: denis/teacher/cities
+create:
+    redirect: 'denis/teacher/cities/update/:id'
+    redirectClose: denis/teacher/cities
+update:
+    redirect: denis/teacher/cities
+    redirectClose: denis/teacher/cities

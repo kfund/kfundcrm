@@ -1,0 +1,7 @@
+1.0.1: 
+- First version of comments
+- create_comments_table.php
+1.0.2:
+- Fixed Email Reply Template
+1.0.3:
+- Fixed invalid component code that throws validation error.

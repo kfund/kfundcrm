@@ -1,0 +1,11 @@
+columns:
+    lesson_name:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    short_description:
+        label: Descr
+        type: text
+        searchable: true
+        sortable: true

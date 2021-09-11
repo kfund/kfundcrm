@@ -1,0 +1,192 @@
+title = "Teacher"
+url = "/teachers/:slug"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Denis\Teacher\Models\Teacher"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "name"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+<main class="bd-main w-75 aside-screen overflow-auto">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center title-header w-100 d-flex justify-content-center">
+      <h1 class="display-4 fw-normal">Teacher profile</h1>
+      <a target="__blank" href="/backend/denis/teacher/teachers/update/{{ record.id }}"><i class="fas fa-edit"></i></a> 
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center d-flex w-100 justify-content-around">
+        <div class="main-body w-100">    
+            <div class="row gutters-sm w-100">
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                      <img src="{{ record.image.path }}" alt="Admin" class="rounded-circle" width="150">
+                      <div class="mt-3">
+                        <h4>{{ record.name }}</h4>
+                        <p class="text-secondary mb-1">{{ record.job_title }}</p>
+                        <p class="text-muted font-size-sm">{{ record.adress }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mt-3">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex flex-column align-items-start">
+                      <h6 class="mb-0"><i class="fas fa-city"></i> Cities</h6>
+                      <br>
+                      <div class="row w-100 d-flex justify-content-between align-items-center">
+                        {% for city in record.cities %}
+                        <a href="/cities/{{ city.slug }}" class="btn btn-dark w-25">{{ city.cities_city }}</a>
+                        {% endfor %}
+                    </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card mt-3">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex flex-column align-items-start">
+                      <h6 class="mb-0"><i class="fas fa-school"></i> Schools</h6>
+                      <br>
+                      <div class="row w-100 d-flex justify-content-between align-items-center flex-wrap">
+                        {% for school in record.schools %}
+                        <a href="/schools/{{ school.slug }}" class="btn btn-dark" style="width: 40%;">{{ school.schools_school }}</a>
+                        {% endfor %}
+                    </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card mt-3">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex flex-column align-items-start">
+                      <h6 class="mb-0"><i class="fas fa-pen"></i> Courses</h6>
+                      <br>
+                      <div class="row w-100 d-flex justify-content-between align-items-center flex-wrap">
+                        {% for course in record.courses %}
+                        <a href="/courses/{{ course.slug }}" class="btn btn-dark" style="width: 40%;">{{ course.courses_course }}</a>
+                        {% endfor %}
+                    </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Full Name</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{ record.name }}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Date of birth</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{ record.date_of_birth }}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Email</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{ record.email }}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Mobile</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{ record.mobile }}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Address</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{ record.adress }}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Teaching since</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                         
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row gutters-sm">
+                  <div class="col w-50">
+                    <div class="card mt-3">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <h6 class="mb-0"><i class="fas fa-file-download"></i> Agreement</h6>
+                          <a class="btn btn-outline-warning w-50" href="{{ record.document_1.path }}" download>Download</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="card mt-3">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0"><i class="fab fa-github"></i> Github</h6>
+                          <span class="text-secondary">{{ record.github }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="card mt-3">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <a class="btn btn-outline-primary w-100" href="{{ record.telegram }}">Message</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col w-50">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Teacher </i> skills</h6>
+                        <small>Markup</small>
+                        <div class="progress mb-3" style="height: 5px">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="{{ record.markup_skills }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small>JS</small>
+                        <div class="progress mb-3" style="height: 5px">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small>Python</small>
+                        <div class="progress mb-3" style="height: 5px">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small>Teacher skills</small>
+                        <div class="progress mb-3" style="height: 5px">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+  
+  
+  
+              </div>
+            </div>
+        </div>
+    </div>
+</main>

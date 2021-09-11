@@ -1,0 +1,10 @@
+name: Lessons
+form: $/denis/teacher/models/lessons/fields.yaml
+modelClass: Denis\Teacher\Models\Lessons
+defaultRedirect: denis/teacher/lessons
+create:
+    redirect: 'denis/teacher/lessons/update/:id'
+    redirectClose: denis/teacher/lessons
+update:
+    redirect: denis/teacher/lessons
+    redirectClose: denis/teacher/lessons

@@ -1,0 +1,17 @@
+{% if comments.lastPage > 1 %}
+<ul class="pagination">
+    {% if comments.currentPage > 1 %}
+    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (comments.currentPage-1) }) }}">&larr; Prev</a></li>
+    {% endif %}
+
+    {% for page in 1..comments.lastPage %}
+    <li class="{{ comments.currentPage == page ? 'active' : null }}">
+        <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+    </li>
+    {% endfor %}
+
+    {% if comments.lastPage > comments.currentPage %}
+    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (comments.currentPage+1) }) }}">Next &rarr;</a></li>
+    {% endif %}
+</ul>
+{% endif %}

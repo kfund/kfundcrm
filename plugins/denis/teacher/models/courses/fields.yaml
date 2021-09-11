@@ -1,0 +1,46 @@
+fields:
+    courses_course:
+        label: Course
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: courses_course
+            type: slug
+        type: text
+    date_of_start:
+        label: date_of_start
+        mode: date
+        span: auto
+        type: datepicker
+    students_age:
+        label: students_age
+        span: auto
+        type: text
+    lessons_count:
+        label: 'Lessons:'
+        span: auto
+        type: number
+    curriculum:
+        label: 'Curriculum:'
+        mode: file
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+secondaryTabs:
+    fields:
+        courses_image:
+            label: courses_image
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 'Tab 1'

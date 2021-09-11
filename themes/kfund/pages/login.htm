@@ -1,0 +1,35 @@
+url = "/login"
+layout = "login-layout"
+title = "Login"
+is_hidden = 0
+
+[account]
+redirect = "home"
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+==
+{% if not user %}
+    <div class="global-container">
+        {% partial __SELF__ ~ '::signin' %}
+        {% flash %}
+        <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+        {% endflash %}
+    </div>
+    
+{% else %}
+
+
+{% endif %}
+
+<script>
+  $(window).on('ajaxErrorMessage', function(event, message){
+
+      // This can be any custom JavaScript you want
+      alert('Something bad happened, mate, here it is: ' + message);
+
+      // This will stop the default alert() message
+      event.preventDefault();
+
+  })
+</script>

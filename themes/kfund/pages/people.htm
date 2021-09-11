@@ -1,0 +1,176 @@
+title = "People"
+url = "/people"
+layout = "default"
+is_hidden = 0
+==
+<main class="bd-main w-75 aside-screen overflow-auto">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center title-header">
+      <h1 class="display-4 fw-normal">People force</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <ul class="nav nav-pills mb-3 d-flex flex-row justify-content-between course-menu" id="pills-tab" role="tablist" style="width: 90%; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+        <li class="nav-item item-big" role="presentation" style="width: 33%;">
+          <button class="nav-link w-100 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Management</button>
+        </li>
+        <li class="nav-item item-big" role="presentation" style="width: 33%;">
+          <button class="nav-link w-100" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="width: 33%;">Courators</button>
+        </li>
+        <li class="nav-item item-big" role="presentation" style="width: 33%;">
+          <button class="nav-link w-100" id="pills-teachers-tab" data-bs-toggle="pill" data-bs-target="#pills-teachers" type="button" role="tab" aria-controls="pills-teachers" aria-selected="false" style="width: 33%;">Teachers</button>
+        </li>
+      </ul>
+      <div class="tab-content course-menu" id="pills-tabContent" style="width: 90%;">
+        <br>
+          <div class="tab-pane fade w-100  show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+            <div class="tab-content-inner d-flex w-100 justify-content-around flex-wrap">
+              <!-- Curators -->
+              {% partial 'stuff/bossy' %}
+            </div>
+          </div>
+          <div class="tab-pane fade w-100 " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+            <div class="tab-content-inner d-flex w-100 justify-content-around flex-wrap">
+              <!-- Curators -->
+                  {% partial 'stuff/curators' %}
+              </div>
+            </div>
+            <div class="tab-pane fade w-100 " id="pills-teachers" role="tabpanel" aria-labelledby="pills-teachers-tab">
+              <div class="tab-content-bar w-100 d-flex flex-row justify-content-around" style="padding: 1rem 0; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+                <select class="form-select select-city" aria-label="Default select example" style="width: 33%;" onchange="sortTeachers()">
+                  <option selected>Choose city</option>
+                  <option value="1">Kharkiv</option>
+                  <option value="2">Kryvyi Rig</option>
+                  <option value="3">Cherkassy</option>
+                </select>
+                <select class="form-select" aria-label="Default select example" style="width: 33%;">
+                  <option selected>Choose course type</option>
+                  <option value="1">Programming</option>
+                  <option value="2">Ent</option>
+                </select>
+              </div>
+              <br>
+              <div class="tab-content-inner d-flex w-100 justify-content-around flex-wrap" style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+                <!-- Web teachers -->
+                  {% partial 'stuff/teachers' %}
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function sortTeachers() {
+      let cityValue = document.querySelector(".select-city").value;
+      
+      let kharkiv = document.querySelectorAll('.kharkiv')
+      let kryvyiRig = document.querySelectorAll('.kryvyi-rig')
+      let cherkassy = document.querySelectorAll('.cherkassy')
+
+      if ( cityValue == '1' ) {
+        for (const person of kryvyiRig) {
+          if (person.classList.contains("hide")) {
+            
+          }
+          else {
+            person.classList.toggle('hide')
+          }
+        }
+        for (const person of cherkassy) {
+          if (person.classList.contains("hide")) {
+            
+          }
+          else {
+            person.classList.toggle('hide')
+          }
+        }
+        for (const person of kharkiv) {
+          if (person.classList.contains("hide")) {
+            person.classList.toggle('hide')
+          }
+          else {
+            
+          }
+        }
+        
+      } 
+      else if ( cityValue == '2' ) {
+        for (const person of kharkiv) {
+          if (person.classList.contains("hide")) {
+            
+          }
+          else {
+            person.classList.toggle('hide')
+          }
+        }
+        for (const person of cherkassy) {
+          if (person.classList.contains("hide")) {
+            
+          }
+          else {
+            person.classList.toggle('hide')
+          }
+        }
+        for (const person of kryvyiRig) {
+          if (person.classList.contains("hide")) {
+            person.classList.toggle('hide')
+          }
+          else {
+            
+          }
+        }
+      }
+      else if ( cityValue == '3' ){
+        for (const person of kharkiv) {
+          if (person.classList.contains("hide")) {
+            
+          }
+          else {
+            person.classList.toggle('hide')
+          }
+        }
+        for (const person of kryvyiRig) {
+          if (person.classList.contains("hide")) {
+            
+          }
+          else {
+            person.classList.toggle('hide')
+          }
+        }
+        for (const person of cherkassy) {
+          if (person.classList.contains("hide")) {
+            person.classList.toggle('hide')
+          }
+          else {
+            
+          }
+        }
+      }
+      else {
+        for (const person of kharkiv) {
+          if (person.classList.contains("hide")) {
+            person.classList.toggle('hide')
+          }
+          else {
+            
+          }
+        }
+        for (const person of cherkassy) {
+          if (person.classList.contains("hide")) {
+            person.classList.toggle('hide')
+          }
+          else {
+            
+          }
+        }
+        for (const person of kryvyiRig) {
+          if (person.classList.contains("hide")) {
+            person.classList.toggle('hide')
+          }
+          else {
+            
+          }
+        }
+      }
+
+    }
+  </script>

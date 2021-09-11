@@ -1,0 +1,16 @@
+columns:
+    courses_course:
+        label: Course
+        type: text
+        searchable: true
+        sortable: true
+    date_of_start:
+        label: 'Date of start'
+        type: date
+        searchable: true
+        sortable: true
+    students_age:
+        label: 'Students age'
+        type: text
+        searchable: true
+        sortable: true

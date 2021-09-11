@@ -1,0 +1,23 @@
+title = "City"
+url = "/cities/:slug"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Denis\Teacher\Models\Cities"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "cities_city"
+notFoundMessage = "Record not found"
+==
+
+{% set record = builderDetails.record %}
+
+<main class="bd-main w-75 aside-screen overflow-auto">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center title-header w-100">
+      <h1 class="display-4 fw-normal">{{ record.cities_city }}</h1>
+    </div>
+    {% for teacher in record.teacher %}
+        <a href="/teachers/{{ teacher.slug }}" class="btn btn-dark w-25">{{ teacher.name }}</a>
+    {% endfor %}
+</main>

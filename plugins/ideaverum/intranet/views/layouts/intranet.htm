@@ -1,0 +1,67 @@
+name = "Intranet layout"
+==
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+<body>
+<table class="wrapper layout-default" width="100%" cellpadding="0" cellspacing="0">
+
+    <!-- Header -->
+    <tr>
+        <td class="header">
+            {% set pathToFile = 'plugins/ideaverum/intranet/assets/img/icon-intranet-mail.png' | app %}
+            <img style="width: 50px;display: block; margin: 0 auto;" src="{{ message.embed(pathToFile) }}">
+            <a href="{{ url('/') }}">
+                <?= e(trans('ideaverum.intranet::lang.intranet_file_share')) ?>
+            </a>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="center">
+            <table class="content" width="100%" cellpadding="0" cellspacing="0">
+                <!-- Email Body -->
+                <tr>
+                    <td class="body" width="100%" cellpadding="0" cellspacing="0">
+                        <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+                            <!-- Body content -->
+                            <tr>
+                                <td class="content-cell">
+                                    {{ content|raw }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+    <!-- Footer -->
+    <tr>
+        <td>
+            <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="content-cell" align="center">
+                        &copy; {{ "now"|date("Y") }} {{ appName }}. <?= e(trans('ideaverum.intranet::lang.all_rights_reserved')) ?>.
+                        <p style="font-size:10px;color:#000;">
+                            <?= e(trans('ideaverum.intranet::lang.best_regards')) ?>,<br>
+                            <?= e(trans('ideaverum.intranet::lang.if_you_like_our_plugin')) ?>, <?= e(trans('ideaverum.intranet::lang.please_rate_and_review')) ?>.
+                            <br>
+                            Intranet
+                            <br>
+                            <?= e(trans('ideaverum.intranet::lang.team')) ?> <a href="https://www.ideaverum.hr/">Idea Verum</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

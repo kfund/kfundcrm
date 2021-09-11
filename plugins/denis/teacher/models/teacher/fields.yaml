@@ -1,0 +1,124 @@
+fields:
+    Name:
+        label: 'denis.teacher::lang.teacher.name'
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: 'denis.teacher::lang.teacher.slug'
+        span: auto
+        preset:
+            field: Name
+            type: slug
+        type: text
+    adress:
+        label: 'denis.teacher::lang.teacher.adress'
+        span: auto
+        type: text
+    date_of_birth:
+        label: 'denis.teacher::lang.teacher.date_of_birth'
+        mode: datetime
+        span: auto
+        type: datepicker
+    job_title:
+        label: 'denis.teacher::lang.teacher.job_title'
+        options:
+            Teacher: Teacher
+            Methodist: Methodist
+            Manager: Manager
+            Curator: Curator
+            Boss: Boss
+        showSearch: true
+        span: auto
+        required: 1
+        type: dropdown
+    email:
+        label: 'denis.teacher::lang.teacher.email'
+        span: auto
+        type: text
+    mobile:
+        label: 'denis.teacher::lang.teacher.mobile'
+        span: auto
+        type: number
+    telegram:
+        label: 'denis.teacher::lang.teacher.telegram'
+        span: auto
+        type: text
+    github:
+        label: 'denis.teacher::lang.teacher.github'
+        span: auto
+        type: text
+    teaching_since:
+        label: teaching_since
+        mode: date
+        span: auto
+        type: datepicker
+    status:
+        label: status
+        span: auto
+        type: text
+tabs:
+    fields:
+        markup_skills:
+            label: 'denis.teacher::lang.teacher.markup_skills'
+            span: auto
+            type: text
+            tab: Skills
+        js_skills:
+            label: 'denis.teacher::lang.teacher.js_skills'
+            span: auto
+            type: text
+            tab: Skills
+        teacher_skills:
+            label: 'denis.teacher::lang.teacher.teacher_skills'
+            span: auto
+            type: text
+            tab: Skills
+        python_skills:
+            label: 'denis.teacher::lang.teacher.python_skills'
+            span: auto
+            type: text
+            tab: Skills
+secondaryTabs:
+    fields:
+        document_1:
+            label: 'denis.teacher::lang.teacher.document_1'
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 'denis.teacher::lang.teacher.media'
+        cities:
+            label: cities
+            nameFrom: cities_city
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: 'denis.teacher::lang.teacher.media'
+        schools:
+            label: schools
+            nameFrom: schools_school
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: 'denis.teacher::lang.teacher.media'
+        courses:
+            label: courses
+            nameFrom: courses_course
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: 'denis.teacher::lang.teacher.media'
+        image:
+            label: 'denis.teacher::lang.teacher.image'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 'denis.teacher::lang.teacher.media'

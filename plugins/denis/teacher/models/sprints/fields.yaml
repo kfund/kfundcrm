@@ -1,0 +1,39 @@
+fields:
+    sprints_title:
+        label: Title
+        span: auto
+        type: text
+    name:
+        label: 'Name:'
+        span: auto
+        type: text
+    start_date:
+        label: 'Start date:'
+        mode: datetime
+        span: auto
+        type: datepicker
+    end_date:
+        label: 'End date:'
+        mode: datetime
+        span: auto
+        type: datepicker
+    tag:
+        label: 'Tag:'
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: sprints_title
+            type: slug
+        type: text
+tabs:
+    fields:
+        courses:
+            label: 'Course:'
+            nameFrom: courses_course
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: 'Tab 1'

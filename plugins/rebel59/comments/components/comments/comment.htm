@@ -1,0 +1,29 @@
+<div id="comment-{{comment.id}}">
+    <div class="card comment" style="margin-bottom: 20px;">
+        <div class="card-block">
+            <h6 class="card-subtitle mb-2 text-muted">{{ comment.author_name }}</h6>
+            <p class="comment-content" >{{ comment.content | nl2br }}</p>
+            {% if not comment.children.count %}
+            <a href="javascript;" data-request-data="comment_id: {{comment.id}}" class="card-link" data-request="comments::onDeleteComment">Delete</a>
+            {% endif %}
+
+                <a href="javascript;" class="card-link" data-action="edit" data-comment-id="{{comment.id}}">Edit</a>
+                <a href="javascript;" class="card-link" data-action="save" data-comment-id="{{comment.id}}">Save</a>
+                <a href="javascript;" class="card-link" data-action="cancel" data-comment-id="{{comment.id}}">Cancel</a>
+
+            <a href="#" data-request-data="parent_id: {{comment.id}}" class="card-link" data-request="comments::onCreateReply">Reply</a>
+
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('#comment-{{comment.id}} [data-action="edit"]').on('click', function(event) {
+        event.preventDefault();
+        $.oc.commentmanager.editComment({{comment.id}});
+    });
+
+</script>

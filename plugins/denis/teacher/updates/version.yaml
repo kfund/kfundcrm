@@ -1,0 +1,158 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table denis_teacher_'
+    - builder_table_create_denis_teacher_.php
+1.0.3:
+    - 'Drop table denis_teacher_'
+    - builder_table_delete_denis_teacher_.php
+1.0.4:
+    - 'Created table denis_teacher_teachers'
+    - builder_table_create_denis_teacher_teachers.php
+1.0.5:
+    - 'Updated table denis_teacher_teachers'
+    - builder_table_update_denis_teacher_teachers.php
+1.0.6:
+    - 'Updated table denis_teacher_teachers'
+    - builder_table_update_denis_teacher_teachers_2.php
+1.0.7:
+    - 'Updated table denis_teacher_teachers'
+    - builder_table_update_denis_teacher_.php
+1.0.8:
+    - 'Updated table denis_teacher_'
+    - builder_table_update_denis_teacher__2.php
+1.0.9:
+    - 'Updated table denis_teacher_'
+    - builder_table_update_denis_teacher__3.php
+1.0.10:
+    - 'Updated table denis_teacher_'
+    - builder_table_update_denis_teacher__4.php
+1.0.11:
+    - 'Created table denis_teacher_city'
+    - builder_table_create_denis_teacher_city.php
+1.0.12:
+    - 'Drop table denis_teacher_'
+    - builder_table_delete_denis_teacher__2.php
+1.0.13:
+    - 'Created table denis_teacher_'
+    - builder_table_create_denis_teacher__2.php
+1.0.14:
+    - 'Updated table denis_teacher_'
+    - builder_table_update_denis_teacher__5.php
+1.0.15:
+    - 'Updated table denis_teacher_city'
+    - builder_table_update_denis_teacher_city.php
+1.0.16:
+    - 'Updated table denis_teacher_city'
+    - builder_table_update_denis_teacher_city_2.php
+1.0.17:
+    - 'Drop table denis_teacher_city'
+    - builder_table_delete_denis_teacher_city.php
+1.0.18:
+    - 'Created table denis_teacher_cities'
+    - builder_table_create_denis_teacher_cities.php
+1.0.19:
+    - 'Created table denis_teacher_teacher_cities'
+    - builder_table_create_denis_teacher_teacher_cities.php
+1.0.20:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities.php
+1.0.21:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities_2.php
+1.0.22:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities_3.php
+1.0.23:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities_4.php
+1.0.24:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities_5.php
+1.0.25:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities_6.php
+1.0.26:
+    - 'Updated table denis_teacher_cities'
+    - builder_table_update_denis_teacher_cities.php
+1.0.27:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities_7.php
+1.0.28:
+    - 'Updated table denis_teacher_teacher_cities'
+    - builder_table_update_denis_teacher_teacher_cities_8.php
+1.0.29:
+    - 'Created table denis_teacher_schools'
+    - builder_table_create_denis_teacher_schools.php
+1.0.30:
+    - 'Updated table denis_teacher_schools'
+    - builder_table_update_denis_teacher_schools.php
+1.0.31:
+    - 'Created table denis_teacher_teacher_schools'
+    - builder_table_create_denis_teacher_teacher_schools.php
+1.0.32:
+    - 'Created table denis_teacher_schools_cities'
+    - builder_table_create_denis_teacher_schools_cities.php
+1.0.33:
+    - 'Created table denis_teacher_courses'
+    - builder_table_create_denis_teacher_courses.php
+1.0.34:
+    - 'Updated table denis_teacher_courses'
+    - builder_table_update_denis_teacher_courses.php
+1.0.35:
+    - 'Created table denis_teacher_teacher_courses'
+    - builder_table_create_denis_teacher_teacher_courses.php
+1.0.36:
+    - 'Created table denis_teacher_schools_courses'
+    - builder_table_create_denis_teacher_schools_courses.php
+1.0.37:
+    - 'Updated table denis_teacher_schools'
+    - builder_table_update_denis_teacher_schools_2.php
+1.0.38:
+    - 'Updated table denis_teacher_schools_courses'
+    - builder_table_update_denis_teacher_schools_courses.php
+1.0.39:
+    - 'Created table denis_teacher_cities_courses'
+    - builder_table_create_denis_teacher_cities_courses.php
+1.0.40:
+    - 'Updated table denis_teacher_'
+    - builder_table_update_denis_teacher__6.php
+1.0.41:
+    - 'Updated table denis_teacher_'
+    - builder_table_update_denis_teacher__7.php
+1.0.42:
+    - 'Updated table denis_teacher_cities'
+    - builder_table_update_denis_teacher_cities_2.php
+1.0.43:
+    - 'Created table denis_teacher_lessons'
+    - builder_table_create_denis_teacher_lessons.php
+1.0.44:
+    - 'Updated table denis_teacher_'
+    - builder_table_update_denis_teacher__8.php
+1.0.45:
+    - 'Updated table denis_teacher_lessons'
+    - builder_table_update_denis_teacher_lessons.php
+1.0.46:
+    - 'Created table denis_teacher_lessons_courses'
+    - builder_table_create_denis_teacher_lessons_courses.php
+1.0.47:
+    - 'Created table denis_teacher_news'
+    - builder_table_create_denis_teacher_news.php
+1.0.48:
+    - 'Updated table denis_teacher_courses'
+    - builder_table_update_denis_teacher_courses_2.php
+1.0.49:
+    - 'Updated table denis_teacher_lessons'
+    - builder_table_update_denis_teacher_lessons_2.php
+1.0.50:
+    - 'Created table denis_teacher_sprints'
+    - builder_table_create_denis_teacher_sprints.php
+1.0.51:
+    - 'Created table denis_teacher_lessons_sprints'
+    - builder_table_create_denis_teacher_lessons_sprints.php
+1.0.52:
+    - 'Updated table denis_teacher_sprints'
+    - builder_table_update_denis_teacher_sprints.php
+1.0.53:
+    - 'Created table denis_teacher_sprints_courses'
+    - builder_table_create_denis_teacher_sprints_courses.php

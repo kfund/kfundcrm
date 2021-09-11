@@ -1,0 +1,19 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        type: text
+    date:
+        label: 'News date'
+        mode: date
+        span: auto
+        type: datepicker
+    author:
+        label: Author
+        span: auto
+        type: text
+    news:
+        label: News
+        size: small
+        span: auto
+        type: richeditor

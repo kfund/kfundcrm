@@ -1,0 +1,102 @@
+fields:
+    lesson_name:
+        label: 'Lesson title'
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: lesson_name
+            type: slug
+        type: text
+    short_description:
+        label: 'Short description'
+        size: large
+        span: auto
+        type: richeditor
+    course_image_inner:
+        label: 'Course image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+        comment: '( optional )'
+tabs:
+    fields:
+        field1:
+            label: 'Lesson plan:'
+            size: huge
+            span: auto
+            type: richeditor
+            tab: 'Lesson plan'
+        field2:
+            label: 'Main task:'
+            size: huge
+            span: auto
+            type: richeditor
+            tab: Tasks
+        field3:
+            label: 'Additional task:'
+            size: huge
+            span: auto
+            type: richeditor
+            tab: Tasks
+        video_link_1:
+            label: 'Main lesson video:'
+            span: auto
+            type: text
+            comment: 'You should copy only symbols which are going after "="'
+            tab: Materials
+        video_link_2:
+            label: 'Additional video'
+            span: auto
+            type: text
+            comment: '(if it''s needed)'
+            tab: Materials
+        presentation_link:
+            label: 'Presentation:'
+            span: auto
+            type: text
+            comment: 'Attach the link to .pptx file'
+            tab: Materials
+        course_file:
+            label: 'File:'
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            comment: 'File for downloading'
+            tab: Materials
+        material_link_1:
+            label: 'Link to material:'
+            span: auto
+            type: text
+            tab: Materials
+        material_link_2:
+            label: 'Additional link:'
+            span: auto
+            type: text
+            tab: Materials
+secondaryTabs:
+    fields:
+        courses:
+            label: 'Course:'
+            nameFrom: courses_course
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: Relations
+        sprints:
+            label: 'Sprint:'
+            nameFrom: sprints_title
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: Relations

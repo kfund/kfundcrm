@@ -1,0 +1,41 @@
+[builderList]
+modelClass = "Denis\Teacher\Models\Teacher"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "teacher"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+{% for record in records %}
+    {% if record.job_title == 'Curator' %}
+    <div class="col-3 course-card">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-primary border-primary">
+                <h4 class="my-0 fw-normal">{{ record.name }}</h4>
+            </div>
+            <div class="card-body d-flex flex-column align-items-center">
+                <img src="{{ record.image.path }}" alt="" width="64" height="64" class="rounded-circle me-2">
+                <br>
+                <div class="row w-100 d-flex justify-content-between align-items-center flex-wrap">
+                    {% for city in record.cities %}
+                        <button class="btn btn-dark w-100">{{ city.cities_students }} Students</a>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="row w-100 d-flex justify-content-between align-items-center">
+                    {% for city in record.cities %}
+                        <a href="/cities/{{ city.slug }}" class="btn btn-dark w-100">{{ city.cities_city }}</a>
+                    {% endfor %}
+                </div>
+                <br>
+                <a href="/teachers/{{ record.slug }}" type="button" class="w-100 btn btn-lg btn-outline-primary">More info</a>
+            </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}

@@ -1,0 +1,62 @@
+[builderList]
+modelClass = "Denis\Teacher\Models\Schools"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "schools_school"
+noRecordsMessage = "No records found"
+detailsPage = "school"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+<div class="tab-content-bar w-100 d-flex flex-row justify-content-around" style="padding: 1rem 0; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+    <select class="form-select select-city" aria-label="Default select example" style="width: 33%;" onchange="sortTeachers()">
+      <option selected>Choose city</option>
+      <option value="1">Kharkiv</option>
+      <option value="2">Kryvyi Rig</option>
+      <option value="3">Cherkassy</option>
+    </select>
+    <select class="form-select" aria-label="Default select example" style="width: 33%;">
+      <option selected>Choose course type</option>
+      <option value="1">Programming</option>
+      <option value="2">Ent</option>
+    </select>
+  </div>
+  <br>
+  <div class="tab-content-inner d-flex w-100 justify-content-around flex-wrap" style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
+    {% for record in records %}
+    {% for city in record.cities %}
+        <div class="col-3 course-card {{ city.slug }}">
+    {% endfor %}
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-primary border-primary">
+                    <h4 class="my-0 fw-normal">{{ record.schools_school }}</h4>
+                </div>
+                <div class="card-body d-flex flex-column align-items-center">
+                    <img src="{{ record.school_image.path }}" alt="" width="128" height="128" class="img-fluid">
+                    <br>
+                    <div class="row w-100 d-flex justify-content-between align-items-center flex-wrap">
+                        {% for course in record.courses %}
+                            {% if course.courses_course == 'Web Front-End' %}
+                                <a href="/courses/{{ course.slug }}" class="btn btn-primary" style="width: 100%;">{{ course.courses_course }}</a>
+                            {% else %}
+                                <a href="/courses/{{ course.slug }}" class="btn btn-warning" style="width: 45%;">{{ course.courses_course }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <div class="btn-group" role="group" aria-label="...">
+                        {% for city in record.cities %}
+                            <a href="/schools/{{ school.slug }}" class="btn btn-dark" style="margin: 0 1rem;">{{ city.cities_city }}</a>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <a href="/schools/{{ record.slug }}" type="button" class="w-100 btn btn-lg btn-outline-primary">More info</a>
+                </div>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,200 @@
+<section>
+    <div  class="row p-3">
+        <div id="intranetVue" class="col-lg-3 text-center" style="min-height:500px;">
+            <div class="list-group" style="max-height:500px;overflow-y: scroll;">
+                <!-- Visible-->
+                <a href="#" style="color:#fff;" data-toggle="modal" data-target="#categoryModal" class="list-group-item list-group-item-action bg-success center-block">
+                    <i class="fa fa-plus"></i><?= e(trans('ideaverum.intranet::lang.new_category')) ?>
+                </a>
+                <!-- Visible only if in child -->
+                <a href="#" class="list-group-item list-group-item-action center-block" v-if="path_history.length != 0" v-on:click="back()">
+                    <i class="fa fa-arrow-left"></i><?= e(trans('ideaverum.intranet::lang.go_back')) ?>
+                </a>
+                <!-- Category list -->
+                <a  href="#" class="list-group-item list-group-item-action active center-block" v-on:click="getFiles(active_category.id)">
+                    <?= e(trans('ideaverum.intranet::lang.current_category')) ?>: <br>
+                    {{ active_category.title }}
+                </a>
+                <a href="#" style="z-index: 90;" class="list-group-item list-group-item-action center-block" v-for="category in displayed_categories" v-if="category.id != active_category.id" v-bind:class="[category.id == selected_category ? 'selected' : '']" v-on:click="selectCategory(category)">
+                    <i style="z-index: 99;" class="icon-pencil-square edit-category" v-on:click.stop="editCategory(category.id, category.title)"></i>
+                        {{ category.title }}
+                    <i style="z-index: 99;" class="icon-trash-o delete-category" v-on:click.stop="deleteCategory(category.id)"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 p-2">
+            <form action="{{route('saveIntranetFile')}}" class="dropzone" id="dzUpload">
+                <div class="dz-message" data-dz-message><span><?= e(trans('ideaverum.intranet::lang.drop_file_or_click')) ?></span></div>
+                <?= Form::token() ?>
+            </form>
+            <button id="submit-all" type="button" class="submit-files btn btn-default btn-lg btn-block mb-2"><?= e(trans('ideaverum.intranet::lang.save_files')) ?></button>
+            <table id="tablica" class="table table-bordered table-striped">
+
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<!-- Category Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #28a745;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><p style="color:white;">x</p></span>
+                </button>
+                <h5 class="modal-title text-center" id="exampleModalLongTitle"><?= e(trans('ideaverum.intranet::lang.category')) ?></h5>
+            </div>
+            <div class="modal-body" style="margin-top: 10px;">
+                <div class="form-group">
+                    <select v-model="selected_category" class="form-control">
+                        <option value="0"><?= e(trans('ideaverum.intranet::lang.not_a_subcategory')) ?></option>
+                        <option v-bind:value="category.id" v-for="category in category_list" v-if="category.is_default != 1">{{ category.title }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><?= e(trans('ideaverum.intranet::lang.category_name')) ?></label>
+                    <input v-model="category_title" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= e(trans('ideaverum.intranet::lang.back')) ?></button>
+                <button type="button" v-on:click="submitForm()" class="btn btn-primary"><?= e(trans('ideaverum.intranet::lang.save')) ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="editCategory" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1991d1;color:white;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><p style="color:white;">&times;</p></span>
+                    </button>
+                    <h5 class="modal-title text-center" id="kategorija"><?= e(trans('ideaverum.intranet::lang.category')) ?></h5>
+                </div>
+                <div class="modal-body" style="margin-top: 10px;">
+                    <div class="form-group">
+                        <label><?= e(trans('ideaverum.intranet::lang.category_name')) ?></label>
+                        <input v-model="category_title"type="text" class="form-control imeKategorije">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= e(trans('ideaverum.intranet::lang.back')) ?></button>
+                    <button type="submit" v-on:click="edit()" class="btn btn-primary editImena"><?= e(trans('ideaverum.intranet::lang.change')) ?></button>
+                </div>
+            </div>
+    </div>
+</div>
+
+<!-- File move modal -->
+<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #a2d9f7;color:black;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><p>&times;</p></span>
+                </button>
+                <h5 class="modal-title text-center" id="premjestanjeFilea"><?= e(trans('ideaverum.intranet::lang.file_move')) ?></h5>
+            </div>
+            <div class="modal-body" style="margin-top: 10px;">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label><?= e(trans('ideaverum.intranet::lang.current_category')) ?>:</label>
+                        <input v-model="category_title" type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label><?= e(trans('ideaverum.intranet::lang.file')) ?>:</label>
+                        <input v-model="original_filename" type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><?= e(trans('ideaverum.intranet::lang.move_to')) ?>:</label>
+                    <select v-model="selected_category" class="form-control">
+                        <option value="0"><?= e(trans('ideaverum.intranet::lang.choose_category')) ?></option>
+                        <option v-bind:value="category.id" v-if="category.title != category_title" v-for="category in category_list">{{ category.title }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= e(trans('ideaverum.intranet::lang.back')) ?></button>
+                <button type="button" v-on:click="move()" class="btn btn-primary"><?= e(trans('ideaverum.intranet::lang.move')) ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email file share modal -->
+<div class="modal fade" id="shareFile" tabindex="-1" role="dialog" aria-labelledby="shareFile" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #1991d1;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><p style="color:white;">x</p></span>
+                </button>
+                <h5 class="modal-title text-center" id="fileShare"><?= e(trans('ideaverum.intranet::lang.email_file_share')) ?></h5>
+            </div>
+            <div class="modal-body" style="margin-top: 10px;">
+                <div class="form-group">
+                    <label><?= e(trans('ideaverum.intranet::lang.emails')) ?>:</label>
+                    <input v-model="recepient_emails" placeholder="<?= e(trans('ideaverum.intranet::lang.multiple_emails_separated_by_comma')) ?>. <?= e(trans('ideaverum.intranet::lang.eg')) ?>@<?= e(trans('ideaverum.intranet::lang.example')) ?>.com, <?= e(trans('ideaverum.intranet::lang.example')) ?>@<?= e(trans('ideaverum.intranet::lang.domain')) ?>.com" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= e(trans('ideaverum.intranet::lang.back')) ?></button>
+                <button type="submit" v-on:click="share()" class="btn btn-primary editImena"><?= e(trans('ideaverum.intranet::lang.send')) ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+    var intranet_categories = JSON.parse( '<?= $categories ?>' );
+    var category_list = JSON.parse( '<?= $category_list ?>' );
+    var deleteFileRoute = '<?= $deleteFileRoute ?>';
+    var moveFileRoute = '<?= $moveFileRoute ?>';
+    var saveFileRoute = '<?= $saveFileRoute ?>';
+    var getFilesRoute = '<?= $getFilesRoute ?>';
+    var readFile = '<?= $readFileRoute ?>';
+    var save_category_route = '<?= $saveCategoryRoute ?>';
+    var deleteCategoryRoute  = '<?= $deleteRoute ?>';
+    var editCategoryRoute ='<?= $editRoute ?>';
+    var emailShareRoute ='<?= $emailShareRoute ?>';
+    var files = [];
+
+    var search_trans = '<?= e(trans("ideaverum.intranet::lang.search")) ?>';
+    var show_trans = '<?= e(trans("ideaverum.intranet::lang.show")) ?>';
+    var files_per_page_trans = '<?= e(trans("ideaverum.intranet::lang.files_per_page")) ?>';
+    var showing_trans = '<?= e(trans("ideaverum.intranet::lang.showing")) ?>';
+    var to_trans = '<?= e(trans("ideaverum.intranet::lang.to")) ?>';
+    var of_trans = '<?= e(trans("ideaverum.intranet::lang.of")) ?>';
+    var entries_trans = '<?= e(trans("ideaverum.intranet::lang.entries")) ?>';
+    var next_trans = '<?= e(trans("ideaverum.intranet::lang.next")) ?>';
+    var previous_trans = '<?= e(trans("ideaverum.intranet::lang.previous")) ?>';
+    var category_trans = '<?= e(trans("ideaverum.intranet::lang.category")) ?>';
+    var name_trans = '<?= e(trans("ideaverum.intranet::lang.name")) ?>';
+    var options_trans = '<?= e(trans("ideaverum.intranet::lang.options")) ?>';
+    var view_file_trans = '<?= e(trans("ideaverum.intranet::lang.view_file")) ?>';
+    var delete_file_trans = '<?= e(trans("ideaverum.intranet::lang.delete_file")) ?>';
+    var send_the_file_via_email_trans = '<?= e(trans("ideaverum.intranet::lang.send_the_file_via_email")) ?>';
+    var move_file_to_another_category_trans = '<?= e(trans("ideaverum.intranet::lang.move_file_to_another_category")) ?>';
+    var search_by_id_or_name_trans = '<?= e(trans("ideaverum.intranet::lang.search_by_id_or_name")) ?>';
+    var remove_trans = '<?= e(trans("ideaverum.intranet::lang.remove")) ?>';
+    var file_delete_trans = '<?= e(trans("ideaverum.intranet::lang.file_delete")) ?>';
+    var are_you_sure_trans = '<?= e(trans("ideaverum.intranet::lang.are_you_sure")) ?>';
+    var delete_trans = '<?= e(trans("ideaverum.intranet::lang.delete")) ?>';
+    var back_trans = '<?= e(trans("ideaverum.intranet::lang.back")) ?>';
+    var category_delete_trans = '<?= e(trans("ideaverum.intranet::lang.category_delete")) ?>';
+    var file_deleted_trans = '<?= e(trans("ideaverum.intranet::lang.file_deleted")) ?>';
+    var file_moved_trans = '<?= e(trans("ideaverum.intranet::lang.file_moved")) ?>';
+    var file_sent_trans = '<?= e(trans("ideaverum.intranet::lang.file_sent")) ?>';
+    var category_deleted_trans = '<?= e(trans("ideaverum.intranet::lang.category_deleted")) ?>';
+    var category_created_trans = '<?= e(trans("ideaverum.intranet::lang.category_created")) ?>';
+    var category_name_changed_trans = '<?= e(trans("ideaverum.intranet::lang.category_name_changed")) ?>';
+</script>

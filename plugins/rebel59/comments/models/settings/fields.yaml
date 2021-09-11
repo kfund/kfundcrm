@@ -1,0 +1,18 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    relations:
+        label: rebel59.comments::lang.models.settings.relations
+        type: repeater
+        form:
+            fields:
+                plugin:
+                    label: rebel59.comments::lang.models.settings.plugin_name
+                    placeholder: Rebel59.Comments
+                    span: left
+                model:
+                    label: rebel59.comments::lang.models.settings.model_name
+                    placeholder: Rebel59\Comments\Models\Comment;
+                    span: right
