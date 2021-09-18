@@ -44,7 +44,7 @@ externalRelationParam = "slug"
       <div class="tab-content course-menu overflow-auto w-100" id="pills-tabContent" style="width: 90%;">
         <div class="tab-pane fade show active overflow-auto w-100" id="pills-plan" role="tabpanel" aria-labelledby="pills-plan-tab">
           <div class="tab-content-inner overflow-auto w-100 scrollable d-flex flex-row justify-content-center">
-            <div class="row w-75 table-none">
+            <div class="row w-75 table-none description">
               {{ record.short_description|raw }}
             </div>
           </div>
@@ -152,3 +152,12 @@ externalRelationParam = "slug"
       </div>
     </div>
   </main>
+
+  <script>
+    let descrItems = document.querySelector('.description').querySelectorAll('p')
+
+    descrItems.forEach(element => {
+      element.classList.add("btn", "btn-secondary")
+    });
+
+  </script>
