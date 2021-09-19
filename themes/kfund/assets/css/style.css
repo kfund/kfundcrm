@@ -503,6 +503,9 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+    .course-menu {
+        margin-left: 2rem;
+    }
     .main-mobile {
         margin-top: 4rem;
         padding-left: 1rem;
@@ -512,3 +515,12 @@ p {
     }
 }
 
+@media screen and (max-width: 768px) {
+    .main-mobile {
+        margin-top: 6rem;
+        padding-left: 1rem;
+    }
+    .course-card {
+        width: 80%;
+    }
+}
