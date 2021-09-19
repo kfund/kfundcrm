@@ -30,6 +30,14 @@ main  * {
     color: black;
 }
 
+.sprint-card {
+    width: 20%;
+}
+
+.course-card {
+    width: 20%;
+}
+
 .header {
     width: 100%;
     height: var(--header-height);
@@ -430,12 +438,6 @@ p {
     color: black;
 }
 
-@media screen and (max-width: 1440px) {
-    .title-header {
-        margin-top: 0px;
-    }
-}
-
 @media screen and (min-width: 768px) {
     main {
         margin: calc(var(--header-height) + 3rem) 0 0 0 !important;
@@ -474,3 +476,39 @@ p {
         padding-left: calc(var(--nav-width) + 188px)
     }
 }
+
+@media screen and (max-width: 1600px) {
+    .sprint-card {
+        width: 40%;
+    }
+    .title-header {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .course-card {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .sprint-card {
+        width: 80%;
+    }
+
+    .sprint-card .heading{
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-mobile {
+        margin-top: 4rem;
+        padding-left: 1rem;
+    }
+    .course-card {
+        width: 80%;
+    }
+}
+
