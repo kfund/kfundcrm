@@ -517,9 +517,13 @@ p {
     }
     .course {
         flex-direction: column !important;
+        padding: 0.5rem;
     }
     .course .nav-pills {
         flex-direction: row !important;
+    }
+    .course .nav-pills button {
+        width: 50% !important;
     }
     .course-menu {
         margin-left: 1rem;
@@ -533,7 +537,7 @@ p {
         margin-right: 2rem;
     }
     .main-mobile ul {
-        padding: 0 20px;
+        padding: 0 40px;
     }
     .course-card {
         width: 80%;
@@ -546,7 +550,6 @@ p {
 
 @media screen and (max-width: 576px) {
     .main-mobile {
-        margin-top: 6rem;
         padding-left: 1rem;
         overflow-x: hidden;
     }
