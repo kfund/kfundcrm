@@ -528,6 +528,13 @@ p {
     .course .nav-pills button {
         width: 50% !important;
     }
+    .crm-menu {
+        width: 100% !important;
+        margin-bottom: 1rem;
+    }
+    .crm-menu button {
+        width: 50% !important;
+    }
     .course-menu {
         margin-left: 1rem;
     }
@@ -537,6 +544,9 @@ p {
     .list-group {
         margin-bottom: 0.5rem !important;
     }
+    .lms-card {
+        padding: 0 3rem 0 2rem !important;
+    }
     .main-mobile {
         margin-top: calc(var(--header-height) + 1rem);
         padding-left: 1rem;
@@ -544,6 +554,9 @@ p {
     }
     .lesson-nav {
         margin-right: 2rem;
+    }
+    .lesson-descr > .row {
+        width: 100% !important;
     }
     .main-mobile ul {
         padding: 0 40px;
@@ -567,8 +580,14 @@ p {
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 420px) {
     .header_toggle + h2 {
         font-size: 18px !important;
+    }
+    .course-menu li button {
+        font-size: 14px !important;
+    }
+    .lesson-nav h2 {
+        font-size: 14px !important;
     }
 }

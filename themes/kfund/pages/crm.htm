@@ -12,7 +12,7 @@ is_hidden = 0
 
 <main class="bd-main w-100 main-mobile" id="main">
   <div class="d-flex align-items-start w-100 course">
-    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <div class="nav flex-column nav-pills me-3 crm-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <button class="nav-link  active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Teachers</button>
       {% if user.groups[0].code != 'teachers' %} 
       <button class="nav-link" id="v-pills-curriculum-tab" data-bs-toggle="pill" data-bs-target="#v-pills-curriculum" type="button" role="tab" aria-controls="v-pills-curriculum" aria-selected="false">Admins</button>
@@ -22,7 +22,7 @@ is_hidden = 0
       <div class="tab-pane fade show active w-100" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
         <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
           <div class="row w-100 d-flex flex-row justify-content-around">
-            <div class="col-lg-5 d-flex flex-column flex-column justify-content-start align-items-center">
+            <div class="col-lg-5 d-flex flex-column flex-column justify-content-start align-items-center" style="margin-bottom: 1rem;">
                 <div class="card mb-4 rounded-3 shadow-sm border-primary">
                     <div class="card-header py-3 text-primary border-primary">
                         <h4 class="my-0 fw-normal">Tallanto CRM</h4>
@@ -38,7 +38,7 @@ is_hidden = 0
                 <a href="https://apps.apple.com/us/app/tallanto-teachers/id1434284833" target="_blank" class="btn btn-light w-75">Apple</a>
             </div>
             <div class="col-lg-5 d-flex flex-column flex-column justify-content-start align-items-center">
-              <div class="video-tutorial w-100">
+              <div class="video-tutorial w-100 d-flex flex-column align-items-center">
                 <h2>Video tutorial:</h2>
                 <video width="240" height="320" controls>
                   <source src="{{ 'assets/video/video_tutorial.mp4'|theme }}" type="video/mp4">
