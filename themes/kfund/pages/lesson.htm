@@ -45,7 +45,7 @@ externalRelationParam = "slug"
             <button class="nav-link w-100" id="pills-materials-tab" data-bs-toggle="pill" data-bs-target="#pills-materials" type="button" role="tab" aria-controls="pills-materials" aria-selected="false">Materials</button>
         </li>
       </ul>
-      <div class="tab-content course-menu overflow-auto w-100" id="pills-tabContent" style="width: 90%;">
+      <div class="tab-content overflow-auto w-100" id="pills-tabContent" style="width: 90%;">
         <div class="tab-pane fade show active overflow-auto w-100" id="pills-plan" role="tabpanel" aria-labelledby="pills-plan-tab">
           <div class="tab-content-inner overflow-auto w-100 scrollable d-flex flex-row justify-content-center lesson-descr">
             <div class="row w-75 table-none description">
@@ -54,21 +54,21 @@ externalRelationParam = "slug"
           </div>
         </div>
         <div class="tab-pane fade overflow-auto w-100" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <div class="tab-content-inner overflow-auto w-100 scrollable d-flex flex-row justify-content-center">
+          <div class="tab-content-inner overflow-auto w-100 scrollable d-flex flex-row justify-content-center lesson-text">
             <div class="row w-75 table-none">
               {{ record.field1|raw }}
             </div>
           </div>
         </div>
         <div class="tab-pane fade w-100" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-          <div class="d-flex align-items-start w-100">
+          <div class="d-flex align-items-start w-100 lesson-expected">
             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               <button class="nav-link active" id="v-pills-main-tab" data-bs-toggle="pill" data-bs-target="#v-pills-main" type="button" role="tab" aria-controls="v-pills-main" aria-selected="true">Main</button>
               <button class="nav-link" id="v-pills-add-tab" data-bs-toggle="pill" data-bs-target="#v-pills-add" type="button" role="tab" aria-controls="v-pillsadd" aria-selected="false">Add</button>
             </div>
             <div class="tab-content w-100" id="v-pills-tabContent">
               <div class="tab-pane fade show active w-100" id="v-pills-main" role="tabpanel" aria-labelledby="v-pills-main-tab">
-                <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                <div class="tab-content-inner w-100 d-flex flex-row justify-content-center lesson-text">
                   <div class="row w-75">
                     <p class="text-dark">Expected result:</p>
                     {{ record.field2|raw }}
@@ -76,7 +76,7 @@ externalRelationParam = "slug"
                 </div>
               </div>
               <div class="tab-pane fade w-100" id="v-pills-add" role="tabpanel" aria-labelledby="v-pills-add-tab">
-                <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                <div class="tab-content-inner w-100 d-flex flex-row justify-content-center lesson-text">
                   <div class="row w-75 table-none">
                     {% if record.field3 %}
                       <p class="text-dark">Expected result:</p>
@@ -92,7 +92,7 @@ externalRelationParam = "slug"
             
         </div>
         <div class="tab-pane fade w-100" id="pills-materials" role="tabpanel" aria-labelledby="pills-materials-tab">
-            <div class="d-flex align-items-start w-100">
+            <div class="d-flex align-items-start w-100 lesson-expected">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                   <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Videos</button>
                   <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Pres</button>
@@ -101,7 +101,7 @@ externalRelationParam = "slug"
                 </div>
                 <div class="tab-content w-100" id="v-pills-tabContent">
                   <div class="tab-pane fade show active w-100" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center lesson-text">
                       <div class="row w-75 table-none">
                         {% if record.video_link_1 %}
                         <iframe width="100%" height="600px" src="https://www.youtube.com/embed/{{ record.video_link_1 }}">
@@ -120,7 +120,7 @@ externalRelationParam = "slug"
                     
                   </div>
                   <div class="tab-pane fade w-100" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center lesson-text">
                       <div class="row w-75 table-none">
                         <iframe src="{{ record.presentation_link }}" frameborder="0" width="100%" height="600px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                         <a class="btn btn-warning" href="{{ record.presentation_link }}" style="margin-top:1rem" download>Download</a>
@@ -128,7 +128,7 @@ externalRelationParam = "slug"
                     </div>
                   </div>
                   <div class="tab-pane fade w-100" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center lesson-text">
                       <div class="row w-75 table-none">
                         {% if record.material_link_1 %}
                         <a href="{{ record.material_link_1 }}" class="btn btn-warning name-view" style="width: 200px; margin:1rem">Download</a>
@@ -144,7 +144,7 @@ externalRelationParam = "slug"
                     </div>
                   </div>
                   <div class="tab-pane fade w-100" id="v-pills-comments" role="tabpanel" aria-labelledby="v-pills-comments-tab">
-                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+                    <div class="tab-content-inner w-100 d-flex flex-row justify-content-center lesson-text">
                       <div class="row w-75 table-none">
                         {% component 'comments' %}
                       </div>

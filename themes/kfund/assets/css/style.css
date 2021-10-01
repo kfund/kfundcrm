@@ -512,6 +512,12 @@ p {
     html {
         overflow-x: hidden;
     }
+    iframe {
+        height: 300px !important;
+    }
+    .header_toggle + h2 {
+        font-size: 22px !important;
+    }
     #main > .row {
         padding-left: 1rem;
     }
@@ -524,8 +530,20 @@ p {
     }
     .course .nav-pills {
         flex-direction: row !important;
+        width: 100%;
     }
     .course .nav-pills button {
+        width: 50% !important;
+    }
+    .lesson-expected {
+        flex-direction: column !important;
+        padding: 0.5rem;
+    }
+    .lesson-expected .nav-pills {
+        flex-direction: row !important;
+        width: 100%;
+    }
+    .lesson-expected .nav-pills button {
         width: 50% !important;
     }
     .crm-menu {
@@ -555,7 +573,7 @@ p {
     .lesson-nav {
         margin-right: 2rem;
     }
-    .lesson-descr > .row {
+    .lesson-descr > .row, .lesson-text > .row {
         width: 100% !important;
     }
     .main-mobile ul {
