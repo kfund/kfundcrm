@@ -512,6 +512,9 @@ p {
     html {
         overflow-x: hidden;
     }
+    #main > .row {
+        padding-left: 1rem;
+    }
     .header {
         justify-content: space-between;
     }
@@ -532,7 +535,7 @@ p {
         width: 50% !important;
     }
     .list-group {
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.5rem !important;
     }
     .main-mobile {
         margin-top: calc(var(--header-height) + 1rem);
@@ -561,5 +564,11 @@ p {
     }
     .course-card {
         width: 80%;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .header_toggle + h2 {
+        font-size: 20px !important;
     }
 }
