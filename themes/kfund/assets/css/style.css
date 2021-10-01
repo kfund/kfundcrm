@@ -528,6 +528,12 @@ p {
     .course-menu {
         margin-left: 1rem;
     }
+    .lesson-menu li {
+        width: 50% !important;
+    }
+    .list-group {
+        margin-bottom: 1rem !important;
+    }
     .main-mobile {
         margin-top: calc(var(--header-height) + 1rem);
         padding-left: 1rem;
