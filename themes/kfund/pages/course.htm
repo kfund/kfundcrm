@@ -45,7 +45,7 @@ notFoundMessage = "Record not found"
     <a href="#" style="margin-left: 1rem;"><i class="fas fa-info-circle"></i></a>
   </div>
 </header>
-<main class="bd-main w-100 overflow-auto main-mobile">
+<main class="bd-main w-100 overflow-auto main-mobile" id="main">
   {% for category in user.groups %}
     {% if category.code == record.slug %}
       <div class="d-flex align-items-start w-100 course">

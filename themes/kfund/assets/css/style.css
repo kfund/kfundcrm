@@ -135,7 +135,7 @@ main  * {
 }
 
 .body-pd {
-    padding-left: calc(var(--nav-width) + 1rem);
+    padding-left: calc(var(--nav-width) + 13rem) !important;
     transition: 0.3s
 }
 
@@ -445,6 +445,14 @@ p {
         overflow-x: hidden;
     }
 
+    .lesson-nav {
+        margin: 0 auto;
+    }
+
+    .arrow {
+        font-size: 1.5rem;
+    }
+
     .form-signin {
         padding-left:0 !important;
     }
@@ -472,9 +480,7 @@ p {
         width: calc(var(--nav-width) + 156px)
     }
 
-    .body-pd {
-        padding-left: calc(var(--nav-width) + 188px)
-    }
+
 }
 
 @media screen and (max-width: 1600px) {
@@ -503,22 +509,46 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+    html {
+        overflow-x: hidden;
+    }
+    .header {
+        justify-content: space-between;
+    }
+    .course {
+        flex-direction: column !important;
+    }
+    .course .nav-pills {
+        flex-direction: row !important;
+    }
     .course-menu {
-        margin-left: 2rem;
+        margin-left: 1rem;
     }
     .main-mobile {
-        margin-top: 4rem;
+        margin-top: calc(var(--header-height) + 1rem);
         padding-left: 1rem;
+        overflow-x: hidden;
+    }
+    .lesson-nav {
+        margin-right: 2rem;
+    }
+    .main-mobile ul {
+        padding: 0 20px;
     }
     .course-card {
         width: 80%;
     }
+
+    .body-pd {
+        padding-left: calc(var(--nav-width) + 1.8rem) !important
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 576px) {
     .main-mobile {
         margin-top: 6rem;
         padding-left: 1rem;
+        overflow-x: hidden;
     }
     .course-card {
         width: 80%;

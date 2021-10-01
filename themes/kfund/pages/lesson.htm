@@ -1,12 +1,12 @@
-url = "/courses/:slug/lesson/:id"
+url = "/courses/:slug/lesson/:number_count"
 layout = "default"
 title = "Lesson"
 is_hidden = 0
 
 [builderDetails]
 modelClass = "Denis\Teacher\Models\Lessons"
-identifierValue = "{{ :id }}"
-modelKeyColumn = "id"
+identifierValue = "{{ :number_count }}"
+modelKeyColumn = "number_count"
 displayColumn = "lesson_name"
 notFoundMessage = "Record not found"
 
@@ -23,9 +23,13 @@ externalRelationParam = "slug"
 {% set record = builderDetails.record %}
 <header class="header" id="header">
   <div class="header_toggle"> <i class='fas fa-bars' id="header-toggle"></i> </div>
-  <h2 class="text-primary fw-normal">{{ record.lesson_name }}</h2>
+  <div class="lesson-nav w-75 d-flex flex-row justify-content-between align-items-center">
+    <a href="{{ record.number_count - 1 }}" class="arrow"><i class="fas fa-chevron-left"></i></a>
+    <h2 class="text-primary fw-normal lesson-name">{{ record.lesson_name }}</h2>
+    <a href="{{ record.number_count + 1 }}" class="arrow"><i class="fas fa-chevron-right"></i></a>
+  </div>
 </header>
-<main class="bd-main w-100 main-mobile">
+<main class="bd-main w-100 main-mobile" id="main">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center w-100">
       <ul class="nav nav-pills mb-3 d-flex flex-row justify-content-between w-100" id="pills-tab" role="tablist" style="width: 90%; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">
         <li class="nav-item w-25" role="presentation">

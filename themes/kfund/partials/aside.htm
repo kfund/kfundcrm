@@ -2,11 +2,11 @@
   <nav class="nav">
       <div> <a href="{{ 'home'|page }}" class="nav_logo"> <img src="{{ 'assets/images/logo.png'|theme }}" alt="KFund logo" width="25" height="25"> <span class="nav_logo-name">KFund School</span> </a>
           <div class="nav_list">
-             <a href="{{ 'home'|page }}" class="nav_link d-flex flex-row justify-content-start align-items-center {% if this.page.url == '/' %}active btn btn-primary{% endif %}"><div class="link-logo d-flex align-items-center justify-content-center" style="width: 25px;"><i class='fas fa-home nav_icon'></i></div>  <span class="nav_name">Dashboard</span> </a>
+                <a href="{{ 'home'|page }}" class="nav_link d-flex flex-row justify-content-start align-items-center {% if this.page.url == '/' %}active btn btn-primary{% endif %}"><div class="link-logo d-flex align-items-center justify-content-center" style="width: 25px;"><i class='fas fa-home nav_icon'></i></div>  <span class="nav_name">Dashboard</span> </a>
                 <a href="{{ 'courses'|page }}" class="nav_link d-flex flex-row justify-content-start align-items-center {% if this.page.url == '/courses' or this.page.url == '/courses/:slug' %}active btn btn-primary{% endif %}"><div class="link-logo d-flex align-items-center justify-content-center" style="width: 25px;"><i class='fab fa-leanpub nav_icon'></i></div>  <span class="nav_name">Courses</span> </a> 
                 <a href="{{ 'lms'|page }}" class="nav_link d-flex flex-row justify-content-start align-items-center {% if this.page.url == '/lms' %}active btn btn-primary{% endif %}"><div class="link-logo d-flex align-items-center justify-content-center" style="width: 25px;"><i class="fab fa-centos nav_icon"></i></div>  <span class="nav_name">LMS</span> </a> 
                 <a href="{{ 'crm'|page }}" class="nav_link d-flex flex-row justify-content-start align-items-center {% if this.page.url == '/crm' %}active btn btn-primary{% endif %}"><div class="link-logo d-flex align-items-center justify-content-center" style="width: 25px;"><i class='fas fa-book nav_icon'></i></div>  <span class="nav_name">CRM</span></a>
-               </div>
+          </div>
       </div> 
       <div class="dropdown nav_link">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
