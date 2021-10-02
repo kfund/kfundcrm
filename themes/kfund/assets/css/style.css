@@ -456,26 +456,38 @@ p {
   }
   
   .block:nth-child(1) {
-    background-image: url("https://images.unsplash.com/photo-1558367853-fd760bbe56b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80");
+    background-image: url("https://d29fhpw069ctt2.cloudfront.net/icon/image/39137/preview.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
   }
   
   .block:nth-child(2) {
-    background-image: url("https://images.unsplash.com/photo-1536602012356-86c345795580?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Font_Awesome_5_solid_chalkboard-teacher.svg/1200px-Font_Awesome_5_solid_chalkboard-teacher.svg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
   }
   
   .block:nth-child(3) {
-    background-image: url("https://images.unsplash.com/photo-1515462277126-2dd0c162007a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80");
+    background-image: url("https://www.pikpng.com/pngl/b/80-804823_png-file-svg-my-profile-icon-png-clipart.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
   }
 
   .block:nth-child(4) {
-    background-image: url("https://images.unsplash.com/photo-1597332503885-fc8d195a99b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=869&q=80");
+    background-image: url("https://icon-library.com/images/about-us-icon/about-us-icon-6.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
   }
   
   .overlay {
     z-index: 5;
     width: 80%;
     height: 100%;
-    background-color: rgba(139, 135, 135, 0.5);
+    background-color: rgba(59, 125, 230, 0.8);
     transform: rotate(45deg) scaleY(2) scaleX(0);
     transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     border-left: #ffffff 2px solid;
