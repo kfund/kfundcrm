@@ -274,13 +274,14 @@ class CmsCompoundObject extends CmsObject
      */
     public function getComponentProperties($componentName)
     {
-        $key = md5($this->theme->getPath()).'component-properties';
+        $cache = Cache::driver(Config::get('cms.template_cache_driver', 'file'));
+        $key = self::makeComponentPropertyCacheKey($this->theme);
 
         if (self::$objectComponentPropertyMap !== null) {
             $objectComponentMap = self::$objectComponentPropertyMap;
         }
         else {
-            $cached = Cache::get($key, false);
+            $cached = $cache->get($key, false);
             $unserialized = $cached ? @unserialize(@base64_decode($cached)) : false;
             $objectComponentMap = $unserialized ?: [];
             if ($objectComponentMap) {
@@ -326,7 +327,7 @@ class CmsCompoundObject extends CmsObject
         self::$objectComponentPropertyMap = $objectComponentMap;
 
         $expiresAt = now()->addMinutes(Config::get('cms.template_cache_ttl', 1440));
-        Cache::put($key, base64_encode(serialize($objectComponentMap)), $expiresAt);
+        $cache->put($key, base64_encode(serialize($objectComponentMap)), $expiresAt);
 
         if (array_key_exists($componentName, $objectComponentMap[$objectCode])) {
             return $objectComponentMap[$objectCode][$componentName];
@@ -336,14 +337,22 @@ class CmsCompoundObject extends CmsObject
     }
 
     /**
-     * Clears the object cache.
+     * makeComponentPropertyCacheKey
+     */
+    protected static function makeComponentPropertyCacheKey($theme): string
+    {
+        return 'cms_component_props_' . md5($theme->getPath());
+    }
+
+    /**
+     * clearCache clears the object cache.
      * @param \Cms\Classes\Theme $theme Specifies a parent theme.
      * @return void
      */
     public static function clearCache($theme)
     {
-        $key = md5($theme->getPath()).'component-properties';
-        Cache::forget($key);
+        Cache::driver(Config::get('cms.template_cache_driver', 'file'))
+            ->forget(self::makeComponentPropertyCacheKey($theme));
     }
 
     //

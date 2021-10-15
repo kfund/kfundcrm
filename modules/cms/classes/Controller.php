@@ -110,7 +110,7 @@ class Controller
     protected $partialStack;
 
     /**
-     * Creates the controller.
+     * __construct the controller.
      * @param \Cms\Classes\Theme $theme Specifies the CMS theme.
      * If the theme is not specified, the current active theme used.
      */
@@ -130,7 +130,7 @@ class Controller
     }
 
     /**
-     * Finds and serves the requested page.
+     * run finds and serves the requested page.
      * If the page cannot be found, returns the page with the URL /404.
      * If the /404 page doesn't exist, returns the system 404 page.
      * If the parameter is null, the current URL used. If it is not
@@ -263,7 +263,7 @@ class Controller
     }
 
     /**
-     * Renders a page in its entirety, including component initialization.
+     * render a page in its entirety, including component initialization.
      * AJAX will be disabled for this process.
      * @param string $pageFile Specifies the CMS page file name to run.
      * @param array  $parameters  Routing parameters.
@@ -286,7 +286,7 @@ class Controller
     }
 
     /**
-     * Runs a page directly from its object and supplied parameters.
+     * runPage runs a page directly from its object and supplied parameters.
      * @param \Cms\Classes\Page $page Specifies the CMS page to run.
      * @return string
      */
@@ -705,7 +705,7 @@ class Controller
     }
 
     /**
-     * Executes the page, layout, component and plugin AJAX handlers.
+     * execAjaxHandlers executes the page, layout, component and plugin AJAX handlers.
      * @return mixed Returns the AJAX Response object or null.
      */
     protected function execAjaxHandlers()

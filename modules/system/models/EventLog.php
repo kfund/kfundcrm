@@ -30,10 +30,10 @@ class EventLog extends Model
     {
         try {
             return (
+                !defined('OCTOBER_NO_EVENT_LOGGING') &&
                 class_exists('Model') &&
                 Model::getConnectionResolver() &&
                 System::hasDatabase() &&
-                !defined('OCTOBER_NO_EVENT_LOGGING') &&
                 LogSetting::get('log_events')
             );
         }

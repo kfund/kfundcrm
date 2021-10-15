@@ -2,12 +2,13 @@
 
 use Log;
 use View;
-use Config;
+use Lang;
 use System;
 use Cms\Classes\Theme;
 use Cms\Classes\Router;
 use Cms\Classes\Controller as CmsController;
 use October\Rain\Exception\ErrorHandler as ErrorHandlerBase;
+use October\Rain\Exception\ApplicationException;
 use October\Rain\Exception\SystemException;
 
 /**
@@ -35,7 +36,7 @@ class ErrorHandler extends ErrorHandlerBase
     // }
 
     /**
-     * We are about to display an error page to the user,
+     * beforeHandleError happens when we are about to display an error page to the user,
      * if it is an SystemException, this event should be logged.
      * @return void
      */
@@ -47,13 +48,13 @@ class ErrorHandler extends ErrorHandlerBase
     }
 
     /**
-     * Looks up an error page using the CMS route "/error". If the route does not
-     * exist, this function will use the error view found in the Cms module.
+     * handleCustomError looks up an error page using the CMS route "/error". If the route
+     * does not exist, this function will use the error view found in the CMS module.
      * @return mixed Error page contents.
      */
     public function handleCustomError()
     {
-        if (Config::get('app.debug', false)) {
+        if (System::checkDebugMode()) {
             return null;
         }
 
@@ -85,7 +86,7 @@ class ErrorHandler extends ErrorHandlerBase
     }
 
     /**
-     * Displays the detailed system exception page.
+     * handleDetailedError displays the detailed system exception page.
      * @return View Object containing the error page.
      */
     public function handleDetailedError($exception)
@@ -94,5 +95,30 @@ class ErrorHandler extends ErrorHandlerBase
         View::addNamespace('system', base_path().'/modules/system/views');
 
         return View::make('system::exception', ['exception' => $exception]);
+    }
+
+    /**
+     * getDetailedMessage returns a more descriptive error message based on the context.
+     * @param Exception $exception
+     * @return string
+     */
+    public static function getDetailedMessage($exception)
+    {
+        // ApplicationException never displays a detailed error
+        if ($exception instanceof ApplicationException) {
+            return $exception->getMessage();
+        }
+
+        // Debug mode is on
+        if (System::checkDebugMode()) {
+            return parent::getDetailedMessage($exception);
+        }
+
+        // Prevent database exceptions from leaking
+        if ($exception instanceof \Illuminate\Database\QueryException) {
+            return Lang::get('system::lang.page.custom_error.help');
+        }
+
+        return $exception->getMessage();
     }
 }

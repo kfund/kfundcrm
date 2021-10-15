@@ -1,6 +1,6 @@
 <?php namespace System\Console;
 
-use System\Models\Parameter;
+use System;
 use System\Classes\UpdateManager;
 use October\Rain\Process\Composer as ComposerProcess;
 use Illuminate\Console\Command;
@@ -39,7 +39,9 @@ class ProjectSync extends Command
             passthru('php artisan plugin:check --no-migrate');
 
             // Lock themes
-            passthru('php artisan theme:check');
+            if (System::hasModule('Cms')) {
+                passthru('php artisan theme:check');
+            }
 
             $this->output->success("Project synchronized");
 

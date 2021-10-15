@@ -110,10 +110,7 @@ class CmsObject extends HalcyonModel implements CmsObjectContract
     public static function loadCached($theme, $fileName)
     {
         try {
-            return static::inTheme($theme)
-                ->remember(Config::get('cms.template_cache_ttl', 1440))
-                ->find($fileName)
-            ;
+            return CmsObjectCache::lookup(static::inTheme($theme), $fileName);
         }
         catch (Exception $ex) {
             static::throwHalcyonException($ex);
@@ -297,7 +294,7 @@ class CmsObject extends HalcyonModel implements CmsObjectContract
      */
     public function getTwigCacheKey()
     {
-        $key = $this->getFilePath();
+        $key = $this->theme->getDirName().'/'.$this->getObjectTypeDirName().'/'.$this->fileName;
 
         if ($event = $this->fireEvent('cmsObject.getTwigCacheKey', compact('key'), true)) {
             $key = $event;

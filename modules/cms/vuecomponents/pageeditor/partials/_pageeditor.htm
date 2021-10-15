@@ -12,7 +12,7 @@
             title-property="title"
             :hide-subtitle-editor="isDirectDocumentMode"
             subtitle-property="url"
-            subtitle-label="URL"
+            subtitle-label="<?= e(trans('cms::lang.editor.url')) ?>"
             subtitle-preset-type="url"
             ref="documentHeader"
             :subtitle-preset-remove-words="true"
@@ -23,7 +23,7 @@
             @titleinput="onTitleInput"
         ></backend-component-document-header>
     </template>
-    
+
     <template v-slot:toolbar>
         <backend-component-document-toolbar
             :elements="toolbarElements"

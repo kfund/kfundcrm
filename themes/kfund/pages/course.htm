@@ -10,8 +10,8 @@ scopeValue = "{{ :scope }}"
 displayColumn = "lesson_name"
 noRecordsMessage = "No records found"
 detailsPage = "lesson"
-detailsKeyColumn = "id"
-detailsUrlParameter = "id"
+detailsKeyColumn = "lesson_number"
+detailsUrlParameter = "lesson_number"
 pageNumber = "{{ :page }}"
 
 [builderList builderList2]
@@ -205,11 +205,11 @@ notFoundMessage = "Record not found"
                                 </div>
                             </div>
                           </a>
-                          <div class="list-group collapse w-100" id="collapse-{{ sprint.slug }}">
-                            {% for lesson in lessons %}
+                          <div class="list-group lessons-list collapse w-100" id="collapse-{{ sprint.slug }}">
+                            {% for lesson in lessons|sort((a, b) => a.lesson_number <=> b.lesson_number) %}
                               {% if lesson.sprints[0].sprints_title == sprint.sprints_title %}
-                                <a href="/courses/{{ record.slug }}/lesson/{{ lesson.id }}" class="list-group-item list-group-item-action">
-                                  <span class="text-primary">{{ lesson.number_count }}.</span> {{ lesson.lesson_name }}</span>
+                                <a href="/courses/{{ record.slug }}/lesson/{{ lesson.lesson_number }}" class="list-group-item list-group-item-action">
+                                  <span class="text-primary lesson-number">{{ lesson.lesson_number }}.</span> {{ lesson.lesson_name }}</span>
                                 </a>
                               {% endif %}
                             {% endfor %}
@@ -265,4 +265,8 @@ notFoundMessage = "Record not found"
   else {
     denied[0].remove()
   }
+</script>
+
+<script>
+  
 </script>

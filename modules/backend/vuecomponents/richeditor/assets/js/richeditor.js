@@ -35,6 +35,15 @@
             'oc-text-uppercase': 'Uppercase'
         };
 
+        froalaOptions.paragraphFormat = options.paragraphFormat ? options.paragraphFormat : {
+            'N': 'Normal',
+            'H1': 'Heading 1',
+            'H2': 'Heading 2',
+            'H3': 'Heading 3',
+            'H4': 'Heading 4',
+            'PRE': 'Code'
+        };
+
         froalaOptions.tableStyles = options.tableStyles ? options.tableStyles : {
             'oc-dashed-borders': 'Dashed Borders',
             'oc-alternate-rows': 'Alternate Rows'

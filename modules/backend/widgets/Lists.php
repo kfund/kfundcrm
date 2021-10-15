@@ -1300,7 +1300,7 @@ class Lists extends WidgetBase
      */
     protected function evalTextTypeValue($record, $column, $value)
     {
-        if (is_array($value) && count($value) == count($value, COUNT_RECURSIVE)) {
+        if (is_array($value) && count($value) === count($value, COUNT_RECURSIVE)) {
             $value = implode(', ', $value);
         }
 

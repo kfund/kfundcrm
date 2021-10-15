@@ -4,6 +4,7 @@
 
 tabs:
     defaultTab: backend::lang.user.group.name
+
     fields:
         is_new_user_default:
             label: backend::lang.user.group.is_new_user_default_field_label
@@ -28,6 +29,4 @@ tabs:
         users:
             type: partial
             path: relation_users
-            tab: Users
-
-
+            tab: backend::lang.user.group.users_count

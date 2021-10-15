@@ -8,7 +8,7 @@ use Backend\Models\EditorSetting;
 use Backend\Classes\VueComponentBase;
 
 /**
- * Rich editor Vue component.
+ * RichEditor Vue component.
  *
  * Manages an instance of Froala Editor.
  *
@@ -38,6 +38,7 @@ class RichEditor extends VueComponentBase
             'imageStyles' => EditorSetting::getConfiguredStyles('html_style_image'),
             'linkStyles' => EditorSetting::getConfiguredStyles('html_style_link'),
             'paragraphStyles' => EditorSetting::getConfiguredStyles('html_style_paragraph'),
+            'paragraphFormat' => EditorSetting::getConfiguredFormats('html_paragraph_formats'),
             'tableStyles' => EditorSetting::getConfiguredStyles('html_style_table'),
             'tableCellStyles' => EditorSetting::getConfiguredStyles('html_style_table_cell')
         ];
@@ -83,7 +84,10 @@ class RichEditor extends VueComponentBase
         return File::exists($path) ? $locale : false;
     }
 
-    private function getGlobalButtons()
+    /**
+     * getGlobalButtons
+     */
+    protected function getGlobalButtons()
     {
         $result = trim(EditorSetting::getConfigured('html_toolbar_buttons'));
         if (!strlen($result)) {

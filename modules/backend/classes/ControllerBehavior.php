@@ -69,10 +69,24 @@ class ControllerBehavior extends ExtensionBase
         if (is_array($this->actions)) {
             $this->hideAction(array_diff(get_class_methods(get_class($this)), $this->actions));
         }
+
+        /**
+         * Constructor logic that is protected by authentication
+         */
+        $controller->bindEvent('page.beforeDisplay', function() {
+            $this->beforeDisplay();
+        });
     }
 
     /**
-     * Sets the configuration values
+     * beforeDisplay fires before the page is displayed and AJAX is executed.
+     */
+    public function beforeDisplay()
+    {
+    }
+
+    /**
+     * setConfig sets the configuration values
      * @param mixed $config   Config object or array
      * @param array $required Required config items
      */
@@ -89,11 +103,15 @@ class ControllerBehavior extends ExtensionBase
      */
     public function getConfig($name = null, $default = null)
     {
+        if (!$this->config) {
+            return $default;
+        }
+
         return $this->getConfigValueFrom($this->config, $name, $default);
     }
 
     /**
-     * Protects a public method from being available as an controller action.
+     * hideAction protects a public method from being available as an controller action.
      * These methods could be defined in a controller to override a behavior default action.
      * Such methods should be defined as public, to allow the behavior object to access it.
      * By default public methods of a controller are considered as actions.
@@ -110,7 +128,7 @@ class ControllerBehavior extends ExtensionBase
     }
 
     /**
-     * Makes all views in context of the controller, not the behavior.
+     * makeFileContents makes all views in context of the controller, not the behavior.
      * @param string $filePath Absolute path to the view file.
      * @param array $extraParams Parameters that should be available to the view.
      * @return string
@@ -123,7 +141,8 @@ class ControllerBehavior extends ExtensionBase
     }
 
     /**
-     * Returns true in case if a specified method exists in the extended controller.
+     * controllerMethodExists returns true in case if a specified method exists in the
+     * extended controller.
      * @param string $methodName Specifies the method name
      * @return bool
      */

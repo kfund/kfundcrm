@@ -103,7 +103,7 @@ class FormController extends ControllerBehavior
     ];
 
     /**
-     * Behavior constructor
+     * __construct the behavior
      * @param Backend\Classes\Controller $controller
      */
     public function __construct($controller)
@@ -118,7 +118,7 @@ class FormController extends ControllerBehavior
     }
 
     /**
-     * Initialize the form configuration against a model and context value.
+     * initForm initializes the form configuration against a model and context value.
      * This will process the configuration found in the `$formConfig` property
      * and prepare the Form widget, which is the underlying tool used for
      * actually rendering the form. The model used by this form is passed

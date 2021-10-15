@@ -467,6 +467,8 @@ return [
             'minimal' => 'Minimal',
             'full' => 'Full',
         ],
+        'paragraph_formats' => 'Paragraph Formats',
+        'paragraph_formats_comment' => 'The options that will appear in the Paragraph Format dropdown.',
     ],
     'tooltips' => [
         'preview_website' => 'Preview the website',

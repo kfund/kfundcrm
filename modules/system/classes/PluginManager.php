@@ -504,6 +504,27 @@ class PluginManager
     // Disability
     //
 
+    /**
+     * listDisabledByConfig
+     */
+    public function listDisabledByConfig(): array
+    {
+        $disablePlugins = Config::get('system.disable_plugins');
+
+        if (!$disablePlugins) {
+            return [];
+        }
+        elseif (is_array($disablePlugins)) {
+            return $disablePlugins;
+        }
+        else {
+            return array_map('trim', explode(',', (string) $disablePlugins));
+        }
+    }
+
+    /**
+     * clearDisabledCache
+     */
     public function clearDisabledCache()
     {
         File::delete($this->metaFile);
@@ -511,16 +532,14 @@ class PluginManager
     }
 
     /**
-     * Loads all disables plugins from the meta file.
+     * loadDisabled loads all disables plugins from the meta file.
      */
     protected function loadDisabled()
     {
         $path = $this->metaFile;
 
-        if (($configDisabled = Config::get('system.disable_plugins')) && is_array($configDisabled)) {
-            foreach ($configDisabled as $disabled) {
-                $this->disabledPlugins[$disabled] = true;
-            }
+        foreach ($this->listDisabledByConfig() as $disabled) {
+            $this->disabledPlugins[$disabled] = true;
         }
 
         if (File::exists($path)) {

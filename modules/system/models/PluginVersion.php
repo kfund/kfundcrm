@@ -104,10 +104,7 @@ class PluginVersion extends Model
             }
 
             $this->disabledBySystem = $pluginObj->disabled;
-
-            if (($configDisabled = Config::get('system.disable_plugins')) && is_array($configDisabled)) {
-                $this->disabledByConfig = in_array($this->code, $configDisabled);
-            }
+            $this->disabledByConfig = in_array($this->code, $manager->listDisabledByConfig());
         }
         else {
             $this->name = $this->code;

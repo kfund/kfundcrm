@@ -36,7 +36,7 @@ class System
         $loadModules = Config::get('system.load_modules');
 
         // Lazy
-        if ($loadModules === null) {
+        if (!$loadModules) {
             $foundModules = [];
             foreach (File::directories(base_path('modules')) as $dir) {
                 $foundModules[] = ucfirst(basename($dir));

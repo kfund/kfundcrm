@@ -3,7 +3,7 @@ fields:
         label: 'Lesson title'
         span: auto
         type: text
-    number_count:
+    lesson_number:
         label: Number
         span: auto
         type: number

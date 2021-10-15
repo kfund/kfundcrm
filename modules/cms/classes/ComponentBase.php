@@ -338,7 +338,7 @@ abstract class ComponentBase extends Extendable
     {
         $assetUrl = Config::get('system.plugins_asset_url');
 
-        if ($assetUrl === null) {
+        if (!$assetUrl) {
             $assetUrl = Config::get('app.asset_url').'/plugins';
         }
 

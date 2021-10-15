@@ -37,7 +37,9 @@ abstract class PluginTestCase extends TestCase
         /*
          * Modify the plugin path away from the test context
          */
-        $app->setPluginsPath(realpath(base_path().Config::get('cms.pluginsPath')));
+        $path = Config::get('system.plugins_path');
+        $path = starts_with($path, '/') ? $path : base_path($path);
+        $app->setPluginsPath(realpath($path));
 
         return $app;
     }

@@ -109,7 +109,7 @@
                                     type="number"                                                                         \
                                     name="number"                                                                         \
                                     value="{{ number }}"                                                                  \
-                                    class="form-control align-right"                                                      \
+                                    class="form-control align-right popup-allow-focus"                                    \
                                     autocomplete="off"                                                                    \
                                     placeholder="{{ number_placeholder }}" />                                             \
                             </div>                                                                                        \
@@ -140,9 +140,9 @@
                                 <div class="right-align">                                                                   \
                                     <input                                                                                  \
                                         type="number"                                                                       \
-                                        name="number_min"                                                                       \
+                                        name="number_min"                                                                   \
                                         value="{{ number }}"                                                                \
-                                        class="form-control align-right"                                                    \
+                                        class="form-control align-right popup-allow-focus"                                  \
                                         autocomplete="off"                                                                  \
                                         placeholder="{{ min_placeholder }}" />                                              \
                                 </div>                                                                                      \
@@ -152,9 +152,9 @@
                                     <input                                                                                  \
                                         type="number"                                                                       \
                                         {{ maxNumber }}                                                                     \
-                                        name="number_max"                                                                       \
+                                        name="number_max"                                                                   \
                                         value="{{ number }}"                                                                \
-                                        class="form-control align-right"                                                    \
+                                        class="form-control align-right popup-allow-focus"                                  \
                                         autocomplete="off"                                                                  \
                                         placeholder="{{ max_placeholder }}" />                                              \
                                 </div>                                                                                      \

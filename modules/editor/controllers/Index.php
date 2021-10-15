@@ -5,6 +5,7 @@ use Response;
 use BackendMenu;
 use SystemException;
 use Backend\Classes\Controller;
+use Backend\Models\BrandSetting;
 use Editor\Classes\ExtensionManager;
 use October\Rain\Exception\ValidationException;
 
@@ -78,6 +79,8 @@ class Index extends Controller
         if (strlen($directEditDocument)) {
             $this->vars['hideMainMenu'] = true;
         }
+
+        $this->vars['customLogo'] = BrandSetting::getLogo();
 
         $this->vars['initialState'] = $this->makeInitialState([
             'directModeDocument' => $directEditDocument

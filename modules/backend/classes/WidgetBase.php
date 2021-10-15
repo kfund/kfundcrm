@@ -177,6 +177,10 @@ abstract class WidgetBase extends Extendable
      */
     public function getConfig($name = null, $default = null)
     {
+        if (!$this->config) {
+            return $default;
+        }
+
         return $this->getConfigValueFrom($this->config, $name, $default);
     }
 

@@ -154,6 +154,23 @@ class Theme
      */
     public static function getActiveThemeCode(): ?string
     {
+        /**
+         * @event cms.theme.getActiveTheme
+         * Overrides the active theme code.
+         *
+         * If a value is returned from this halting event, it will be used as the active
+         * theme code. Example usage:
+         *
+         *     Event::listen('cms.theme.getActiveTheme', function () {
+         *         return 'mytheme';
+         *     });
+         *
+         */
+        $apiResult = Event::fire('cms.theme.getActiveTheme', [], true);
+        if ($apiResult !== null) {
+            return $apiResult;
+        }
+
         $activeTheme = $activeFromConfig = Config::get('cms.active_theme');
 
         // Backend override
@@ -198,23 +215,6 @@ class Theme
             if ($dbResult !== null && static::exists($dbResult)) {
                 $activeTheme = $dbResult;
             }
-        }
-
-        /**
-         * @event cms.theme.getActiveTheme
-         * Overrides the active theme code.
-         *
-         * If a value is returned from this halting event, it will be used as the active
-         * theme code. Example usage:
-         *
-         *     Event::listen('cms.theme.getActiveTheme', function () {
-         *         return 'mytheme';
-         *     });
-         *
-         */
-        $apiResult = Event::fire('cms.theme.getActiveTheme', [], true);
-        if ($apiResult !== null) {
-            $activeTheme = $apiResult;
         }
 
         if (!strlen($activeTheme)) {
@@ -275,6 +275,8 @@ class Theme
 
         Parameter::set(self::ACTIVE_KEY, $code);
 
+        self::resetCache();
+
         /**
          * @event cms.theme.setActiveTheme
          * Fires when the active theme has been changed.
@@ -287,8 +289,6 @@ class Theme
          *
          */
         Event::fire('cms.theme.setActiveTheme', compact('code'));
-
-        self::resetCache();
     }
 
     /**
@@ -304,20 +304,6 @@ class Theme
      */
     public static function getEditThemeCode(): ?string
     {
-        $editTheme = null;
-
-        if (BackendAuth::getUser()) {
-            $editTheme = UserPreference::forUser()->get(Theme::EDIT_KEY, null);
-        }
-
-        if (!$editTheme) {
-            $editTheme = Config::get('cms.edit_theme');
-        }
-
-        if (!$editTheme) {
-            $editTheme = static::getActiveThemeCode();
-        }
-
         /**
          * @event cms.theme.getEditTheme
          * Overrides the edit theme code.
@@ -332,7 +318,21 @@ class Theme
          */
         $apiResult = Event::fire('cms.theme.getEditTheme', [], true);
         if ($apiResult !== null) {
-            $editTheme = $apiResult;
+            return $apiResult;
+        }
+
+        $editTheme = null;
+
+        if (BackendAuth::getUser()) {
+            $editTheme = UserPreference::forUser()->get(Theme::EDIT_KEY, null);
+        }
+
+        if (!$editTheme) {
+            $editTheme = Config::get('cms.edit_theme');
+        }
+
+        if (!$editTheme) {
+            $editTheme = static::getActiveThemeCode();
         }
 
         if (!strlen($editTheme)) {
@@ -367,6 +367,8 @@ class Theme
     {
         UserPreference::forUser()->set(Theme::EDIT_KEY, $code);
 
+        self::resetCache();
+
         /**
          * @event cms.theme.setEditTheme
          * Fires when the edit theme has been changed.
@@ -379,8 +381,6 @@ class Theme
          *
          */
         Event::fire('cms.theme.setEditTheme', compact('code'));
-
-        self::resetCache();
     }
 
     /**

@@ -386,12 +386,12 @@
                     file_id: $currentObjects.data('id')
                 }
             }).done(function() {
-                    self.removeFileFromElement($currentObjects)
-                    self.evalIsPopulated()
-                    self.updateDeleteSelectedState()
-                    self.triggerChange()
+                    self.removeFileFromElement($currentObjects);
+                    self.evalIsPopulated();
+                    self.updateDeleteSelectedState();
+                    self.triggerChange();
             }).always(function() {
-                $currentObjects.removeClass('is-loading')
+                $currentObjects.removeClass('is-loading');
             });
         });
 
@@ -416,12 +416,12 @@
                         file_id: $currentObject.data('id')
                     }
                 }).done(function() {
-                    self.removeFileFromElement($currentObject)
-                    self.evalIsPopulated()
-                    self.updateDeleteSelectedState()
-                    self.triggerChange()
+                    self.removeFileFromElement($currentObject);
+                    self.evalIsPopulated();
+                    self.updateDeleteSelectedState();
+                    self.triggerChange();
                 }).always(function () {
-                    $currentObject.removeClass('is-loading')
+                    $currentObject.removeClass('is-loading');
                 });
             });
         });

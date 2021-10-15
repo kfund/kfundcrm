@@ -100,7 +100,7 @@ trait ThemeAssetMaker
         // Configuration for theme asset location
         $assetUrl = Config::get('system.themes_asset_url');
 
-        if ($assetUrl === null) {
+        if (!$assetUrl) {
             $assetUrl = Config::get('app.asset_url').'/themes';
         }
 

@@ -159,3 +159,21 @@
 1.0.54:
     - 'Updated table denis_teacher_lessons'
     - builder_table_update_denis_teacher_lessons_3.php
+1.0.55:
+    - 'Created table denis_teacher_faq'
+    - builder_table_create_denis_teacher_faq.php
+1.0.56:
+    - 'Updated table denis_teacher_faq'
+    - builder_table_update_denis_teacher_faq.php
+1.0.57:
+    - 'Updated table denis_teacher_lessons'
+    - builder_table_update_denis_teacher_lessons_4.php
+1.0.58:
+    - 'Updated table denis_teacher_lessons'
+    - builder_table_update_denis_teacher_lessons_5.php
+1.0.59:
+    - 'Updated table denis_teacher_lessons'
+    - builder_table_update_denis_teacher_lessons_6.php
+1.0.60:
+    - 'Updated table denis_teacher_lessons'
+    - builder_table_update_denis_teacher_lessons_7.php

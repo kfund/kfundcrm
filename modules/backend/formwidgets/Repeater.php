@@ -193,10 +193,19 @@ class Repeater extends FormWidgetBase
         }
 
         if ($this->minItems && count($value) < $this->minItems) {
-            throw new ApplicationException(Lang::get('backend::lang.repeater.min_items_failed', ['name' => $this->fieldName, 'min' => $this->minItems, 'items' => count($value)]));
+            throw new ApplicationException(Lang::get('backend::lang.repeater.min_items_failed', [
+                'name' => $this->fieldName,
+                'min' => $this->minItems,
+                'items' => count($value)
+            ]));
         }
+
         if ($this->maxItems && count($value) > $this->maxItems) {
-            throw new ApplicationException(Lang::get('backend::lang.repeater.max_items_failed', ['name' => $this->fieldName, 'max' => $this->maxItems, 'items' => count($value)]));
+            throw new ApplicationException(Lang::get('backend::lang.repeater.max_items_failed', [
+                'name' => $this->fieldName,
+                'max' => $this->maxItems,
+                'items' => count($value)
+            ]));
         }
 
         /*
@@ -240,31 +249,25 @@ class Repeater extends FormWidgetBase
             }
         }
 
-        if ($currentValue === null) {
+        // Pad current value with minimum items and disable for groups,
+        // which cannot predict their item types
+        if (!$this->useGroups && $this->minItems > 0) {
+            if (!is_array($currentValue)) {
+                $currentValue = [];
+            }
+
+            if (count($currentValue) < $this->minItems) {
+                $currentValue = array_pad($currentValue, $this->minItems, []);
+            }
+        }
+
+        // Repeater value is empty or invalid
+        if ($currentValue === null || !is_array($currentValue)) {
             $this->formWidgets = [];
             return;
         }
 
-        // Ensure that the minimum number of items are preinitialized
-        // only done when not in group mode
-        if (!$this->useGroups && $this->minItems > 0) {
-            if (!is_array($currentValue)) {
-                $currentValue = [];
-                for ($i = 0; $i < $this->minItems; $i++) {
-                    $currentValue[$i] = [];
-                }
-            }
-            elseif (count($currentValue) < $this->minItems) {
-                for ($i = 0; $i < ($this->minItems - count($currentValue)); $i++) {
-                    $currentValue[] = [];
-                }
-            }
-        }
-
-        if (!is_array($currentValue)) {
-            return;
-        }
-
+        // Load up the necessary form widgets
         foreach ($currentValue as $index => $value) {
             $this->makeItemFormWidget($index, array_get($value, '_group', null));
         }

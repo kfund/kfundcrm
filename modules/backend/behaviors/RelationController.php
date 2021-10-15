@@ -189,13 +189,19 @@ class RelationController extends ControllerBehavior
     {
         parent::__construct($controller);
 
-        $this->addJs('js/october.relation.js', 'core');
-        $this->addCss('css/relation.css', 'core');
-
         /*
          * Build configuration
          */
         $this->config = $this->originalConfig = $this->makeConfig($controller->relationConfig, $this->requiredConfig);
+    }
+
+    /**
+     * beforeDisplay fires before the page is displayed and AJAX is executed.
+     */
+    public function beforeDisplay()
+    {
+        $this->addJs('js/october.relation.js', 'core');
+        $this->addCss('css/relation.css', 'core');
     }
 
     /**
@@ -291,7 +297,7 @@ class RelationController extends ControllerBehavior
         $this->model = $model;
         $this->field = $field;
 
-        if ($field === null) {
+        if (!$field) {
             return;
         }
 
@@ -331,7 +337,7 @@ class RelationController extends ControllerBehavior
         $this->manageId = post('manage_id');
         $this->foreignId = post('foreign_id');
         $this->readOnly = $this->getConfig('readOnly');
-        $this->deferredBinding = $this->getConfig('deferredBinding') || !$this->model->exists;
+        $this->deferredBinding = $this->evalDeferredBinding();
         $this->viewMode = $this->evalViewMode();
         $this->manageMode = $this->evalManageMode();
         $this->manageTitle = $this->evalManageTitle();
@@ -481,7 +487,7 @@ class RelationController extends ControllerBehavior
     }
 
     /**
-     * Controller accessor for making partials within this behavior.
+     * relationMakePartial is a controller accessor for making partials within this behavior.
      * @param string $partial
      * @param array $params
      * @return string Partial contents
@@ -497,7 +503,7 @@ class RelationController extends ControllerBehavior
     }
 
     /**
-     * Returns a unique ID for this relation and field combination.
+     * relationGetId returns a unique ID for this relation and field combination.
      * @param string $suffix A suffix to use with the identifier.
      * @return string
      */
@@ -516,7 +522,7 @@ class RelationController extends ControllerBehavior
     }
 
     /**
-     * Returns the active session key.
+     * relationGetSessionKey returns the active session key.
      */
     public function relationGetSessionKey($force = false)
     {
@@ -741,8 +747,19 @@ class RelationController extends ControllerBehavior
     }
 
     /**
+     * evalDeferredBinding
+     */
+    protected function evalDeferredBinding(): bool
+    {
+        if ($this->relationType === 'hasManyThrough') {
+            return false;
+        }
+
+        return $this->getConfig('deferredBinding') || !$this->model->exists;
+    }
+
+    /**
      * evalToolbarButtons determines the default buttons based on the model relationship type.
-     * @return string
      */
     protected function evalToolbarButtons()
     {

@@ -56,7 +56,7 @@ class ReorderController extends ControllerBehavior
     protected $showTree = false;
 
     /**
-     * @var string Reordering mode:
+     * @var string Reordering mode.
      * - simple: October\Rain\Database\Traits\Sortable
      * - nested: October\Rain\Database\Traits\NestedTree
      */
@@ -68,7 +68,7 @@ class ReorderController extends ControllerBehavior
     protected $toolbarWidget;
 
     /**
-     * Behavior constructor
+     * __construct the behavior
      * @param Backend\Classes\Controller $controller
      */
     public function __construct($controller)
@@ -78,19 +78,25 @@ class ReorderController extends ControllerBehavior
         /*
          * Build configuration
          */
-        $this->config = $this->makeConfig($controller->reorderConfig, $this->requiredConfig);
+        $this->config = $this->makeConfig($this->controller->reorderConfig, $this->requiredConfig);
 
+        /*
+         * Populate from config
+         */
+        $this->nameFrom = $this->getConfig('nameFrom', $this->nameFrom);
+    }
+
+    /**
+     * beforeDisplay fires before the page is displayed and AJAX is executed.
+     */
+    public function beforeDisplay()
+    {
         /*
          * Widgets
          */
         if ($this->toolbarWidget = $this->makeToolbarWidget()) {
             $this->toolbarWidget->bindToController();
         }
-
-        /*
-         * Populate from config
-         */
-        $this->nameFrom = $this->getConfig('nameFrom', $this->nameFrom);
     }
 
     //

@@ -13,6 +13,17 @@ tabs:
             size: giant
             language: css
 
+        html_paragraph_formats:
+            label: backend::lang.editor.paragraph_formats
+            tab: backend::lang.editor.markup_classes
+            type: datatable
+            span: auto
+            columns:
+                format_tag:
+                    title: backend::lang.editor.markup_classes
+                format_label:
+                    title: backend::lang.editor.label
+
         html_style_paragraph:
             label: backend::lang.editor.paragraph
             tab: backend::lang.editor.markup_classes

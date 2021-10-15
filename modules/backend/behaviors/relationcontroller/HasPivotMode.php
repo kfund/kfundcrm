@@ -15,6 +15,11 @@ trait HasPivotMode
     protected $pivotWidget;
 
     /**
+     * @var Model pivotModel is a reference to the model used for pivot form
+     */
+    protected $pivotModel;
+
+    /**
      * @var string pivotTitle used for the pivot popup
      */
     protected $pivotTitle;
@@ -41,10 +46,10 @@ trait HasPivotMode
          * Existing record
          */
         if ($this->manageId) {
-            $hydratedModel = $this->relationObject->where($foreignKeyName, $this->manageId)->first();
+            $this->pivotModel = $this->relationObject->where($foreignKeyName, $this->manageId)->first();
 
-            if ($hydratedModel) {
-                $config->model = $hydratedModel;
+            if ($this->pivotModel) {
+                $config->model = $this->pivotModel;
             }
             else {
                 throw new ApplicationException(Lang::get('backend::lang.model.not_found', [
@@ -68,8 +73,7 @@ trait HasPivotMode
                 }
             }
 
-            $pivotModel = $this->relationObject->newPivot();
-            $config->model->setRelation('pivot', $pivotModel);
+            $config->model->setRelation('pivot', $this->relationObject->newPivot());
         }
 
         return $this->makeWidget(\Backend\Widgets\Form::class, $config);
@@ -107,19 +111,14 @@ trait HasPivotMode
          * If the pivot model fails for some reason, abort the sync
          */
         Db::transaction(function () {
-            /*
-             * Add the checked IDs to the pivot table
-             */
+            // Add the checked IDs to the pivot table
             $foreignIds = (array) $this->foreignId;
             $this->relationObject->sync($foreignIds, false);
 
-            /*
-             * Save data to models
-             */
+            // Save data to models
             $foreignKeyName = $this->relationModel->getQualifiedKeyName();
             $hydratedModels = $this->relationObject->whereIn($foreignKeyName, $foreignIds)->get();
             $saveData = $this->pivotWidget->getSaveData();
-
             foreach ($hydratedModels as $hydratedModel) {
                 $modelsToSave = $this->prepareModelsToSave($hydratedModel, $saveData);
                 foreach ($modelsToSave as $modelToSave) {
@@ -140,11 +139,10 @@ trait HasPivotMode
     {
         $this->beforeAjax();
 
-        $foreignKeyName = $this->relationModel->getQualifiedKeyName();
-        $hydratedModel = $this->relationObject->where($foreignKeyName, $this->manageId)->first();
+        // Save data to model
         $saveData = $this->pivotWidget->getSaveData();
+        $modelsToSave = $this->prepareModelsToSave($this->pivotModel, $saveData);
 
-        $modelsToSave = $this->prepareModelsToSave($hydratedModel, $saveData);
         foreach ($modelsToSave as $modelToSave) {
             $modelToSave->save(null, $this->pivotWidget->getSessionKey());
         }

@@ -11,12 +11,12 @@ use System\Classes\ErrorHandler;
 trait ErrorMaker
 {
     /**
-     * @var string Object used for storing a fatal error.
+     * @var string fatalError stores the object used for a fatal error.
      */
     protected $fatalError;
 
     /**
-     * @return boolean Whether a fatal error has been set or not.
+     * hasFatalError returns true if a fatal error has been set.
      */
     public function hasFatalError()
     {
@@ -32,7 +32,7 @@ trait ErrorMaker
     }
 
     /**
-     * Sets standard page variables in the case of a controller error.
+     * handleError sets standard page variables in the case of a controller error.
      */
     public function handleError($exception)
     {

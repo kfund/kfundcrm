@@ -1,7 +1,7 @@
 columns:
-    number_count:
+    lesson_number:
         label: 'Lesson number'
-        type: number
+        type: text
         searchable: true
         sortable: true
     lesson_name:

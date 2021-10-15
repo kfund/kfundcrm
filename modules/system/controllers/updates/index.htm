@@ -21,8 +21,8 @@
                 <h4><?= e(trans(/* Current Build */'system::lang.updates.core_current_build')) ?></h4>
                 <p><span data-core-current-version="<?= $currentVersion ?>"><?= $currentVersion ?></span></p>
                 <p class="description">
-                    <span data-core-has-updates style="display:none">Updates Available</span>
-                    <span data-core-no-updates>Up to Date</span>
+                    <span data-core-has-updates style="display:none"><?= e(trans(/* Updates Available */'system::lang.updates.core_updates_available')) ?></span>
+                    <span data-core-no-updates><?= e(trans(/* Up to Date */'system::lang.updates.core_up_to_date')) ?></span>
                 </p>
             </div>
             <div class="scoreboard-item title-value">

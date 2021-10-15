@@ -8,6 +8,7 @@ use Cms\Models\ThemeLog;
 use Cms\Models\ThemeData;
 use Cms\Classes\CmsObject;
 use Cms\Classes\Page as CmsPage;
+use Cms\Classes\CmsObjectCache;
 use Cms\Classes\ComponentManager;
 use Backend\Models\UserRole;
 use Backend\Classes\WidgetManager;
@@ -32,13 +33,6 @@ class ServiceProvider extends ModuleServiceProvider
         $this->registerHalcyonModels();
 
         /*
-         * CMS module comes with Media module
-         */
-        if (class_exists(\Media\ServiceProvider::class)) {
-            App::register(\Media\ServiceProvider::class);
-        }
-
-        /*
          * Backend specific
          */
         if (App::runningInBackend()) {
@@ -47,6 +41,8 @@ class ServiceProvider extends ModuleServiceProvider
             $this->registerBackendWidgets();
             $this->registerBackendSettings();
         }
+
+        CmsObjectCache::flush();
     }
 
     /**

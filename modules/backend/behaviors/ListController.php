@@ -74,8 +74,8 @@ class ListController extends ControllerBehavior
     protected $actions = ['index'];
 
     /**
-     * Behavior constructor
-     * @param \Backend\Classes\Controller $controller
+     * __construct the behavior
+     * @param Backend\Classes\Controller $controller
      */
     public function __construct($controller)
     {

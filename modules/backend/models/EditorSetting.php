@@ -25,12 +25,12 @@ class EditorSetting extends Model
     ];
 
     /**
-     * @var string Unique code
+     * @var string settingsCode is a unique code for this object.
      */
     public $settingsCode = 'backend_editor_settings';
 
     /**
-     * @var mixed Settings form field defitions
+     * @var mixed settingsFields form fields
      */
     public $settingsFields = 'fields.yaml';
 
@@ -39,28 +39,55 @@ class EditorSetting extends Model
      */
     public $cacheKey = 'backend::editor.custom_css';
 
+    /**
+     * @var string defaultHtmlAllowEmptyTags
+     */
     protected $defaultHtmlAllowEmptyTags = 'textarea, a, iframe, object, video, style, script';
 
+    /**
+     * @var string defaultHtmlAllowTags
+     */
     protected $defaultHtmlAllowTags = 'a, abbr, address, area, article, aside, audio, b, base, bdi, bdo, blockquote, br, button, canvas, caption, cite, code, col, colgroup, datalist, dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, i, iframe, img, input, ins, kbd, keygen, label, legend, li, link, main, map, mark, menu, menuitem, meter, nav, noscript, object, ol, optgroup, option, output, p, param, pre, progress, queue, rp, rt, ruby, s, samp, script, style, section, select, small, source, span, strike, strong, sub, summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var, video, wbr';
 
+    /**
+     * @var string defaultHtmlAllowAttrs
+     */
     protected $defaultHtmlAllowAttrs = '';
 
+    /**
+     * @var string defaultHtmlNoWrapTags
+     */
     protected $defaultHtmlNoWrapTags = 'figure, script, style';
 
+    /**
+     * @var string defaultHtmlRemoveTags
+     */
     protected $defaultHtmlRemoveTags = 'script, style';
 
+    /**
+     * @var string defaultHtmlLineBreakerTags
+     */
     protected $defaultHtmlLineBreakerTags = 'figure, table, hr, iframe, form, dl';
 
+    /**
+     * @var array defaultHtmlStyleImage
+     */
     protected $defaultHtmlStyleImage = [
         'oc-img-rounded' => 'Rounded',
         'oc-img-bordered' => 'Bordered',
     ];
 
+    /**
+     * @var array defaultHtmlStyleLink
+     */
     protected $defaultHtmlStyleLink = [
         'oc-link-green' => 'Green',
         'oc-link-strong' => 'Strong',
     ];
 
+    /**
+     * @var array defaultHtmlStyleParagraph
+     */
     protected $defaultHtmlStyleParagraph = [
         'oc-text-bordered' => 'Bordered',
         'oc-text-gray' => 'Gray',
@@ -68,27 +95,45 @@ class EditorSetting extends Model
         'oc-text-uppercase' => 'Uppercase',
     ];
 
+    /**
+     * @var array defaultHtmlStyleTable
+     */
     protected $defaultHtmlStyleTable = [
         'oc-dashed-borders' => 'Dashed Borders',
         'oc-alternate-rows' => 'Alternate Rows',
     ];
 
+    /**
+     * @var array defaultHtmlStyleTableCell
+     */
     protected $defaultHtmlStyleTableCell = [
         'oc-cell-highlighted' => 'Highlighted',
         'oc-cell-thick-border' => 'Thick Border',
     ];
 
     /**
-     * Editor toolbar presets for Froala.
+     * @var array defaultHtmlParagraphFormats
+     */
+    protected $defaultHtmlParagraphFormats = [
+        'N' => 'Normal',
+        'H1' => 'Heading 1',
+        'H2' => 'Heading 2',
+        'H3' => 'Heading 3',
+        'H4' => 'Heading 4',
+        'PRE' => 'Code',
+    ];
+
+    /**
+     * @var array editorToolbarPresets for Froala
      */
     protected $editorToolbarPresets = [
-        'default' => 'paragraphFormat, paragraphStyle, quote, bold, italic, align, formatOL, formatUL, insertTable, 
+        'default' => 'paragraphFormat, paragraphStyle, quote, bold, italic, align, formatOL, formatUL, insertTable,
                       insertLink, insertImage, insertVideo, insertAudio, insertFile, insertHR, html',
         'minimal' => 'bold, italic, underline, |, insertLink, insertImage, |, html',
-        'full'    => 'undo, redo, |, bold, italic, underline, |, paragraphFormat, paragraphStyle, inlineStyle, |, 
-                      strikeThrough, subscript, superscript, clearFormatting, |, fontFamily, fontSize, |, color, 
-                      emoticons, -, selectAll, |, align, formatOL, formatUL, outdent, indent, quote, |, insertHR, 
-                      insertLink, insertImage, insertVideo, insertAudio, insertFile, insertTable, |, selectAll, 
+        'full'    => 'undo, redo, |, bold, italic, underline, |, paragraphFormat, paragraphStyle, inlineStyle, |,
+                      strikeThrough, subscript, superscript, clearFormatting, |, fontFamily, fontSize, |, color,
+                      emoticons, -, selectAll, |, align, formatOL, formatUL, outdent, indent, quote, |, insertHR,
+                      insertLink, insertImage, insertVideo, insertAudio, insertFile, insertTable, |, selectAll,
                       html, fullscreen',
     ];
 
@@ -115,13 +160,32 @@ class EditorSetting extends Model
         $this->html_style_paragraph = $this->makeStylesForTable($this->defaultHtmlStyleParagraph);
         $this->html_style_table = $this->makeStylesForTable($this->defaultHtmlStyleTable);
         $this->html_style_table_cell = $this->makeStylesForTable($this->defaultHtmlStyleTableCell);
+        $this->html_paragraph_formats = $this->makeFormatsForTable($this->defaultHtmlParagraphFormats);
     }
 
+    /**
+     * afterFetch
+     */
+    public function afterFetch()
+    {
+        // @deprecated remove if year >= 2024
+        if (!isset($this->value['html_paragraph_formats'])) {
+            $this->html_paragraph_formats = $this->makeFormatsForTable($this->defaultHtmlParagraphFormats);
+            $this->save();
+        }
+    }
+
+    /**
+     * afterSave
+     */
     public function afterSave()
     {
         Cache::forget(self::instance()->cacheKey);
     }
 
+    /**
+     * makeStylesForTable
+     */
     protected function makeStylesForTable($arr)
     {
         $count = 0;
@@ -132,8 +196,19 @@ class EditorSetting extends Model
     }
 
     /**
-     * Same as getConfigured but uses special style structure.
-     * @return mixed
+     * makeFormatsForTable
+     */
+    protected function makeFormatsForTable($arr)
+    {
+        $count = 0;
+
+        return array_build($arr, function ($key, $value) use (&$count) {
+            return [$count++, ['format_label' => $value, 'format_tag' => $key]];
+        });
+    }
+
+    /**
+     * getConfiguredStyles same as getConfigured but uses special style structure.
      */
     public static function getConfiguredStyles($key, $default = null)
     {
@@ -158,8 +233,32 @@ class EditorSetting extends Model
     }
 
     /**
-     * Returns the value only if it differs from the default value.
-     * @return mixed
+     * getConfiguredFormats same as getConfigured but uses a special structure for paragraph formats.
+     */
+    public static function getConfiguredFormats($key, $default = null)
+    {
+        $instance = static::instance();
+
+        $value = $instance->get($key);
+
+        $defaultValue = $instance->getDefaultValue($key);
+
+        if (is_array($value)) {
+            $value = array_filter(array_build($value, function ($key, $value) {
+                if (array_has($value, ['format_tag', 'format_label'])) {
+                    return [
+                        array_get($value, 'format_tag'),
+                        array_get($value, 'format_label')
+                    ];
+                }
+            }));
+        }
+
+        return $value != $defaultValue ? $value : $default;
+    }
+
+    /**
+     * getConfigured returns the value only if it differs from the default value.
      */
     public static function getConfigured($key, $default = null)
     {
@@ -172,6 +271,9 @@ class EditorSetting extends Model
         return $value != $defaultValue ? $value : $default;
     }
 
+    /**
+     * getDefaultValue
+     */
     public function getDefaultValue($attribute)
     {
         $property = 'default'.studly_case($attribute);
@@ -180,16 +282,18 @@ class EditorSetting extends Model
     }
 
     /**
-     * Return the editor toolbar presets without line breaks.
-     * @return array
+     * getEditorToolbarPresets returns the editor toolbar presets without line breaks.
      */
-    public function getEditorToolbarPresets()
+    public function getEditorToolbarPresets(): array
     {
         return array_map(function($value) {
             return preg_replace('/\s+/', ' ',$value);
         }, $this->editorToolbarPresets);
     }
 
+    /**
+     * renderCss
+     */
     public static function renderCss()
     {
         $cacheKey = self::instance()->cacheKey;
@@ -208,6 +312,9 @@ class EditorSetting extends Model
         return $customCss;
     }
 
+    /**
+     * compileCss
+     */
     public static function compileCss()
     {
         $parser = new Less_Parser(['compress' => true]);

@@ -18,6 +18,11 @@
   width: 230px;
   height: 38px;
 }
+.editor-application-splash > div .editor-custom-logo > img {
+  display: block;
+  max-width: 200px;
+  max-height: 200px;
+}
 .editor-application-splash > div .editor-hotkeys {
   margin: 30px auto 0 auto;
   color: #5E6D8C;

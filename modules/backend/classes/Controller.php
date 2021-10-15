@@ -140,11 +140,9 @@ class Controller extends Extendable
         $this->user = BackendAuth::getUser();
 
         /*
-         * No booting behaviors for undesirables
+         * Boot behavior constructors
          */
-        if ($this->user || $this->isPublicAction($this->action)) {
-            parent::__construct();
-        }
+        parent::__construct();
 
         /*
          * Impersonate backend role
@@ -217,14 +215,14 @@ class Controller extends Extendable
          *
          *     Event::listen('backend.page.beforeDisplay', function ((\Backend\Classes\Controller) $backendController, (string) $action, (array) $params) {
          *         traceLog('redirect all backend pages to google');
-         *         return \Redirect::to('https://google.com');
+         *         return Redirect::to('https://google.com');
          *     });
          *
          * Or
          *
          *     $backendController->bindEvent('page.beforeDisplay', function ((string) $action, (array) $params) {
          *         traceLog('redirect all backend pages to google');
-         *         return \Redirect::to('https://google.com');
+         *         return Redirect::to('https://google.com');
          *     });
          *
          */

@@ -18,17 +18,30 @@
         this.$pagesContainer = $('.tab-content:first', $el);
         this.tabId = 'tabs' + $el.parents().length + Math.round(Math.random() * 1000);
 
-        if (this.options.closable !== undefined && this.options.closable !== false) {
+        if (this.options.closable) {
             $el.attr('data-closable', '');
+        }
+
+        // Cast empty attribute @todo solve via global util -sg
+        if (this.options.linkable === '') {
+            this.options.linkable = true;
         }
 
         this.init();
     }
 
+    Tab.DEFAULTS = {
+        closable: null,
+        slidable: null,
+        linkable: null,
+        paneClasses: null,
+        titleAsFileNames: null,
+        maxTitleSymbols: null,
+        closeConfirmation: null
+    }
+
     Tab.prototype.init = function() {
         var self = this;
-
-        this.options.slidable = this.options.slidable !== undefined && this.options.slidable !== false;
 
         $('> li', this.$tabsContainer).each(function(index) {
             self.initTab(this);
@@ -62,10 +75,14 @@
         });
 
         this.$tabsContainer.on('shown.bs.tab', 'li', function(){
-            // self.$tabsContainer.dragScroll('fixScrollClasses')
             $(window).trigger('oc.updateUi');
 
             var tabUrl = $('> a', this).data('tabUrl');
+
+            if (!tabUrl && self.options.linkable) {
+                tabUrl = $('> a', this).attr('href');
+            }
+
             if (tabUrl) {
                 window.history.replaceState({}, 'Tab link reference', tabUrl);
             }
@@ -86,7 +103,7 @@
 
         this.updateClasses();
 
-        if (location.hash && this.$tabsContainer.is('[data-linkable]')) {
+        if (location.hash && this.options.linkable) {
             $('li > a[href="' + location.hash + '"]', this.$tabsContainer).tab('show');
         }
     }
@@ -151,7 +168,7 @@
             $li.attr('data-tab-id', identifier);
         }
 
-        if (this.options.paneClasses !== undefined) {
+        if (this.options.paneClasses) {
             $pane.addClass(this.options.paneClasses);
         }
 
@@ -214,7 +231,7 @@
             isActive = $tab.hasClass('active'),
             isModified = $tab.attr('data-modified') !== undefined;
 
-        if (isModified && this.options.closeConfirmation !== undefined && force !== true) {
+        if (isModified && this.options.closeConfirmation && force !== true) {
             if (!confirm(this.options.closeConfirmation)) {
                 return;
             }
@@ -397,9 +414,6 @@
         }
 
         this.goToIndex(tabIndex+1);
-    }
-
-    Tab.DEFAULTS = {
     }
 
     // TAB PLUGIN DEFINITION

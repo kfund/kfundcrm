@@ -1,12 +1,12 @@
-url = "/courses/:slug/lesson/:number_count"
+url = "/courses/:slug/lesson/:lesson_number"
 layout = "default"
 title = "Lesson"
 is_hidden = 0
 
 [builderDetails]
 modelClass = "Denis\Teacher\Models\Lessons"
-identifierValue = "{{ :number_count }}"
-modelKeyColumn = "number_count"
+identifierValue = "{{ :lesson_number }}"
+modelKeyColumn = "lesson_number"
 displayColumn = "lesson_name"
 notFoundMessage = "Record not found"
 
@@ -24,9 +24,13 @@ externalRelationParam = "slug"
 <header class="header" id="header">
   <div class="header_toggle"> <i class='fas fa-bars' id="header-toggle"></i> </div>
   <div class="lesson-nav w-75 d-flex flex-row justify-content-between align-items-center">
-    <a href="{{ record.number_count - 1 }}" class="arrow"><i class="fas fa-chevron-left"></i></a>
+    {% if record.lesson_number > 1  %}
+    <a href="{{ record.lesson_number - 1 }}" class="arrow"><i class="fas fa-chevron-left"></i></a>
+    {% endif %}
     <h2 class="text-primary fw-normal lesson-name">{{ record.lesson_name }}</h2>
-    <a href="{{ record.number_count + 1 }}" class="arrow"><i class="fas fa-chevron-right"></i></a>
+    {% if record.lesson_number < 60  %}
+    <a href="{{ record.lesson_number + 1 }}" class="arrow"><i class="fas fa-chevron-right"></i></a>
+    {% endif %}
   </div>
 </header>
 <main class="bd-main w-100 main-mobile" id="main">

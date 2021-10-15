@@ -14,9 +14,8 @@ is_hidden = 0
   <div class="d-flex align-items-start w-100 course">
     <div class="nav flex-column nav-pills me-3 crm-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <button class="nav-link  active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Teachers</button>
-      {% if user.groups[0].code != 'teachers' %} 
       <button class="nav-link" id="v-pills-curriculum-tab" data-bs-toggle="pill" data-bs-target="#v-pills-curriculum" type="button" role="tab" aria-controls="v-pills-curriculum" aria-selected="false">Admins</button>
-      {% endif %}
+      <button class="nav-link" id="v-pills-questions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-questions" type="button" role="tab" aria-controls="v-pills-questions" aria-selected="false">Questions</button>
     </div>
     <div class="tab-content w-100" id="v-pills-tabContent">
       <div class="tab-pane fade show active w-100" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -104,46 +103,90 @@ is_hidden = 0
           <div class="row d-flex flex-row justify-content-around w-100 flex-wrap">
             <div class="card w-25" style="margin-right: 1rem;">
               <div class="card-body">
+                <i class="fas fa-file-word"></i>
                 <h5 class="card-title">Создание занятия</h5>
                 <p class="card-text">Создать занятие достаточно просто - для этого перейдите во вкладку "занятия"...</p>
-                <a href="https://docs.google.com/document/d/1DH2umQq6X8teTWFmmm7NjsDm56KFQ9kz21SM9cNTyx0/edit?usp=sharing" class="btn btn-primary">Читать</a>
+                <a href="https://docs.google.com/document/d/1DH2umQq6X8teTWFmmm7NjsDm56KFQ9kz21SM9cNTyx0/edit?usp=sharing" target="_blank" class="btn btn-primary">Читать</a>
               </div>
             </div>
             <div class="card w-25" style="margin-right: 1rem;">
               <div class="card-body">
+                <i class="fas fa-file-word"></i>
                 <h5 class="card-title">Создание ученика</h5>
                 <p class="card-text">Найдите иконку "+" во вкладке "ученик". По нажатию на нее откроется...</p>
-                <a href="https://docs.google.com/document/d/1CfnuQh4bohwNykovgjHIay5tB3-wHJFyiK5gY3kT_fU/edit?usp=sharing" class="btn btn-primary">Читать</a>
+                <a href="https://docs.google.com/document/d/1CfnuQh4bohwNykovgjHIay5tB3-wHJFyiK5gY3kT_fU/edit?usp=sharing" target="_blank" class="btn btn-primary">Читать</a>
               </div>
             </div>
             <div class="card w-25" style="margin-right: 1rem;">
               <div class="card-body">
+                <i class="fas fa-file-word"></i>
                 <h5 class="card-title">Создание группы</h5>
                 <p class="card-text">Когда создан ученик и создано первое занятие - пришла переходить к созданию группы...</p>
-                <a href="#" class="btn btn-primary">Читать</a>
+                <a href="#" target="_blank" class="btn btn-primary">Читать</a>
               </div>
             </div>
             <div class="card w-25" style="margin-right: 1rem; margin-top: 1rem;">
               <div class="card-body">
-                <h5 class="card-title">Статусы детей</h5>
+                <i class="fas fa-video"></i> <h5 class="card-title">Статусы детей</h5>
                 <p class="card-text">Видео по ссылке ниже:</p>
                 <a href="https://drive.google.com/file/d/1-vWsj9MG10Igzq_D8dQ8aZ5CLVDmgMTo/view?usp=sharing" class="btn btn-primary">Смотреть</a>
               </div>
             </div>
             <div class="card w-25" style="margin-right: 1rem; margin-top: 1rem;">
               <div class="card-body">
-                <h5 class="card-title">Работа с отказниками</h5>
+                <i class="fas fa-video"></i> <h5 class="card-title">Работа с отказниками</h5>
                 <p class="card-text">Видео по ссылке ниже:</p>
                 <a href="https://drive.google.com/file/d/1ufZqAwwXPS5LOaN8_QN94TwCYztgo9Cw/view?usp=sharing" class="btn btn-primary">Смотреть</a>
               </div>
             </div>
             <div class="card w-25" style="margin-right: 1rem; margin-top: 1rem;">
               <div class="card-body">
-                <h5 class="card-title">Преподаватели и курсы</h5>
+                <i class="fas fa-video"></i> <h5 class="card-title">Преподаватели и курсы</h5>
                 <p class="card-text">Видео по ссылке ниже:</p>
                 <a href="https://drive.google.com/file/d/1sG2fDK83X4u32eFJxyQI76rJ8kivS-he/view?usp=sharing" class="btn btn-primary">Смотреть</a>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade w-100" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab">
+        <div class="tab-content-inner w-100 d-flex flex-row justify-content-center">
+          <div class="row d-flex flex-row justify-content-around w-100 flex-wrap">
+            <div class="row w-100">
+              <h3 class="faq-heading text-center">Общие вопросы</h3>
+              <div class="accordion accordion-flush accordion-area" id="accordionFlushExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                            Где взять лолин и пароль для входа в систему?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseOne" class="accordion-collapse collapse show w-100" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                          За логином и паролем Вам, как куратору - нужно обратиться к методисту курса WEB, Денису.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Где скачать мобильное приложение?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseTwo" class="accordion-collapse collapse w-100" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body" style="background-color: rgb(248, 248, 248);">Информацию по этому вопросу есть во вкладке <strong>Teachers.</div></strong></div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            Логин и пароль для мобильного приложения
+                        </button>
+                      </h2>
+                      <div id="flush-collapseThree" class="accordion-collapse collapse w-100" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Логин и пароль для мобильного приложения <strong>совпадают с Вашим логином и паролем для входа в десктопную версию CRM</strong></div>
+                      </div>
+                    </div>
+              </div>
           </div>
         </div>
       </div>

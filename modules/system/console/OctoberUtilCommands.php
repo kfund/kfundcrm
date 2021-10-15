@@ -245,7 +245,7 @@ trait OctoberUtilCommands
 
                 foreach ($chunk as $file) {
                     if (!in_array($file->getFileName(), $foundModels)) {
-                        $filesToDelete[$file->getFileName()] = $file->getPath();
+                        $filesToDelete[$file->getFileName()] = $file->getPath() . DIRECTORY_SEPARATOR . $file->getFileName();
                     }
                 }
             }

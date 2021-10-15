@@ -5,7 +5,7 @@ use Illuminate\Routing\Controller as ControllerBase;
 use Closure;
 
 /**
- * This is the master controller for all front-end pages.
+ * CmsController is the master controller for all front-end pages.
  * All requests that have not been picked up already by the router will end up here,
  * then the URL is passed to the front-end controller for processing.
  *

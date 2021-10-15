@@ -21,6 +21,7 @@
         <div
             id="<?= $this->getId($type.'Tabs') ?>"
             class="control-tabs <?= $type ?>-tabs layout <?= $tabs->cssClass ?>"
+            <?= $tabs->linkable ? 'data-linkable' : '' ?>
             data-control="tab">
             <?= $this->makePartial('form_tabs', ['tabs' => $tabs]) ?>
         </div>

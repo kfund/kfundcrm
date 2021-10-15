@@ -1,6 +1,7 @@
 Vue.component('editor-component-application', {
     props: {
-        store: Object
+        store: Object,
+        customLogo: String
     },
     data: function data() {
         return {
