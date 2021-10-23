@@ -438,6 +438,39 @@ p {
     color: black;
 }
 
+.lesson-plan {
+    max-width: 1140px !important;
+    text-align: left;
+}
+
+.lesson-plan h1, h2, h3, h4, h5 {
+    text-align: center !important;
+}
+
+.lesson-plan code {
+    font-size: 100%;
+    padding: 0.2rem 0.4rem;
+    background: #000;
+    color: #fff;
+    border-radius: 0.25rem;
+    word-wrap: break-word;
+}
+
+.lesson-plan pre {
+    display: block;
+    font-size: .875rem;
+    overflow: auto;
+    background-color: #fafafa;
+    white-space: pre;
+}
+
+.lesson-plan pre code {
+    background-color: transparent;
+    padding: 0;
+    color: black;
+    font-weight: 400;
+}
+
 /* Main page */
 
 .block {
