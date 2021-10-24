@@ -151,6 +151,12 @@ externalRelationParam = "slug"
                     <div class="tab-content-inner w-100 d-flex flex-row justify-content-center lesson-text">
                       <div class="row w-75 table-none">
                         {% component 'comments' %}
+                        <pre><code class="language-css language-html">
+                          .myImg {
+                            background-image: url("my-image.png");
+                            background-size: cover;
+                          }
+                        </code></pre>
                       </div>
                     </div>
                 </div>
@@ -161,11 +167,25 @@ externalRelationParam = "slug"
     </div>
   </main>
 
-  <script>
-    let descrItems = document.querySelector('.description').querySelectorAll('p')
+{% put scripts %}
+  <script type="text/javascript" src="/themes/kfund/assets/javascript/prism.js"></script>
+{% endput %}
 
-    descrItems.forEach(element => {
-      element.classList.add("btn", "btn-secondary")
-    });
+<script>
+  let descrItems = document.querySelector('.description').querySelectorAll('p')
+  let codeItems = document.querySelector('.lesson-plan').querySelectorAll('code')
 
-  </script>
+  descrItems.forEach(element => {
+    element.classList.add("btn", "btn-secondary")
+  });
+
+  codeItems.forEach(element => {
+    if (element.innerText.includes("<")) {
+      element.classList.add("language-markup")
+    }
+    else {
+      element.classList.add("language-css")
+    }
+  });
+
+</script>
